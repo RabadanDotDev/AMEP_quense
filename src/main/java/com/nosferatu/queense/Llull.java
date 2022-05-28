@@ -1,36 +1,44 @@
 package com.nosferatu.queense;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Llull {
+    String _nomLlull;
+    Map<String, Joc> _jocsApropiats;
+    Map<String, Repte> _reptesSuspesos;
     
     /**
-     * Descripción TODO
+     * Constructor
      * 
-     * @param nomLlull
+     * @param nomLlull Nom del Llull
      */
     public Llull(String nomLlull) {
-        throw new UnsupportedOperationException("Per programar.");
+        _nomLlull = nomLlull;
+        _jocsApropiats = new HashMap<>();
+        _reptesSuspesos = new HashMap<>();
     }
     
     /**
-     * TODO descripció
+     * Permet el Llull apriopiar-se d'un joc
      * 
-     * @param j
-     * @pre TODO
-     * @post TODO
+     * @param j El joc a apropiar
+     * @pre Ø
+     * @post El llull ha guardat el joc
      */
     public void apropiarJoc(Joc j) {
-        throw new UnsupportedOperationException("Per programar.");
+        _jocsApropiats.put(j.obtenirId(), j);
     }
     
     /**
-     * TODO descripció
+     * Permet comunicar un repte que el llull ha suspès perquè el guardi.
      * 
-     * @param r
-     * @pre TODO
-     * @post TODO
+     * @param r El repte suspès
+     * @pre Ø
+     * @post El llull ha guardat r
      */
     public void repteSuspes(Repte r) {
-        throw new UnsupportedOperationException("Per programar.");
+        _reptesSuspesos.put(r.obtenirId(), r);
     }
     
     /**

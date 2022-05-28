@@ -1,25 +1,33 @@
 package com.nosferatu.queense;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MagatzemLlulls {
+    Map<String, Llull> _llulls;
     
     /**
-     * Descripción TODO
+     * Constructor
      * 
      */
     public MagatzemLlulls() {
-        throw new UnsupportedOperationException("Per programar.");
+        _llulls = new HashMap<>();
     }
     
     /**
-     * TODO descripció
+     * Recupera el Llull nomNull, el crea si fa falta.
      * 
      * @param nomLlull
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @pre Ø
+     * @return retorna el Llull amb nom nomLlull
      */
     public Llull obtenirLlull(String nomLlull) {
-        throw new UnsupportedOperationException("Per programar.");
+        Llull l = _llulls.get(nomLlull);
+        if(l == null) {
+            l = new Llull(nomLlull);
+            _llulls.put(nomLlull, l);
+        }
+        return l;    
     }
     
     /**

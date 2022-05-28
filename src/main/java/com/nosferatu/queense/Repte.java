@@ -1,9 +1,12 @@
 package com.nosferatu.queense;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.UUID;
 
 public class Repte {
+    String _idRepte;
     Enigma _enigmaFont;
     Taulell _taulellContenedor;
     Integer _numLlavors;
@@ -22,6 +25,8 @@ public class Repte {
         _taulellContenedor = t;
         _numLlavors = _numObstacles = 0;
         _propostes = new HashMap<>();
+        _idRepte = UUID.randomUUID().toString();
+        _tipus = TipusRepteEnum.DESCONEGUT;
     }
     
     /**
@@ -33,9 +38,9 @@ public class Repte {
     public void posarRepteTipusCorrecte() {
         if(_numLlavors == 1 && _numObstacles == 1)
             _tipus = TipusRepteEnum.DILEMA;
-        else if(_numLlavors == 1 && _numObstacles == 1)
+        else if(_numLlavors == 1 && _numObstacles > 1)
             _tipus = TipusRepteEnum.ELECCIO;
-        else if(_numLlavors == 1 && _numObstacles == 1)
+        else if(_numLlavors > 1 && _numObstacles >= 1)
             _tipus = TipusRepteEnum.MARCACIO;
     }
     
@@ -47,7 +52,14 @@ public class Repte {
      * @post hiHaProposta(idProposta)
      */
     public void seleccionarProposta(String idProposta) {
-       _propostes.put(idProposta, _enigmaFont.encaixarProposta(idProposta));
+        Proposta p = _enigmaFont.encaixarProposta(idProposta);
+        
+        if (p.esCorrecta())
+            _numLlavors++;
+        else
+            _numObstacles++;
+        
+       _propostes.put(idProposta, p);
     }
     
     /**
@@ -82,26 +94,34 @@ public class Repte {
     }
     
     /**
-     * TODO descripció
+     * Accés a una proposta concreta del repte
      * 
-     * @param idProposta
-     * @pre TODO
-     * @post TODO
-     * @return 
+     * @param idProposta Proposta a encaixar
+     * @pre hiHaProposta(idProposta)
+     * @return La proposta identificada per idProposta
      */
     public Proposta encaixarProposta(String idProposta) {
-        throw new UnsupportedOperationException("Per programar.");
+        return _propostes.get(idProposta);
     }
     
     /**
-     * TODO descripció
+     * Recuperador del tipus de repte
      * 
-     * @pre TODO
-     * @post TODO
-     * @return 
+     * @pre Ø
+     * @return El tipus del repte 
      */
     public TipusRepteEnum obtenirTipus() {
-        throw new UnsupportedOperationException("Per programar.");
+        return _tipus;
+    }
+    
+    /**
+     * Accés a l'id del repte
+     * 
+     * @pre Ø
+     * @return Retorna el id del repte
+     */
+    public String obtenirId() {
+        return _idRepte;
     }
     
     /**
@@ -113,5 +133,14 @@ public class Repte {
      */
     public Enigma recuperarCopiaEnigma() {
         throw new UnsupportedOperationException("Per programar.");
+    }
+    
+    /**
+     * Recuperador de l'iterador dels reptes del repte r
+     * 
+     * @return Iterador de les propostes de r
+     */
+    public Iterator<Proposta> recuperarIteradorPropostes() {
+        return _propostes.values().iterator();
     }
 }

@@ -9,6 +9,7 @@ package com.nosferatu.queense;
  * @author raul
  */
 public enum TipusRepteEnum {
+    DESCONEGUT,
     DILEMA,
     ELECCIO,
     MARCACIO

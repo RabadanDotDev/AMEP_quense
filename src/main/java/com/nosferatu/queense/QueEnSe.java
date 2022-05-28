@@ -20,6 +20,9 @@ public class QueEnSe {
         K k = new K();
         testNouEnigma(k);
         testNouTaulell(k);
+        testNouJoc(k, Boolean.TRUE);
+        //testNouJoc(k, Boolean.TRUE);
+        //testNouJoc(k, Boolean.FALSE);
     }
     
     public static void testNouEnigma(K k){
@@ -60,7 +63,7 @@ public class QueEnSe {
         System.out.print("Taulell diferenciat " + k.hiHaTaulellDiferenciat() + "\n");
         System.out.print("Taulell anomenat 'El taulell 1' " + k.hiHaTaulellAnomenat("El taulell 1") + "\n");
         
-        k.iniciNouTaulell("El taulell 1", new Date(2022, 12, 5));
+        k.iniciNouTaulell("El tabloide", new Date(2022, 12, 5));
         
         System.out.print("Taulell diferenciat " + k.hiHaTaulellDiferenciat() + "\n");
         System.out.print("Taulell anomenat 'El taulell 1' " + k.hiHaTaulellAnomenat("El taulell 1") + "\n");
@@ -162,5 +165,77 @@ public class QueEnSe {
         System.out.print("Taulell diferenciat " + k.hiHaTaulellDiferenciat() + "\n");
         
         System.out.print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    }
+
+    private static void testNouJoc(K k, Boolean ambLlull) {
+        System.out.print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+        System.out.print("test nou joc llull\n");
+        
+        
+        System.out.print("Taulell anomenat El tabloide " + k.hiHaTaulellAnomenat("El tabloide") + "\n");
+        Taulell t = k.recuperarTaulell("El tabloide");
+        System.out.print("Taulell valid " + t.esValid() + "\n");
+        System.out.print("joc diferenciat " + k.hiHaJocDiferenciat() + "\n");
+        
+        if(ambLlull)
+            k.iniciNouJocLlull("Prometeus", "El tabloide");
+        else
+            k.iniciNouJocAnonim("El tabloide");
+        
+        System.out.print("joc diferenciat " + k.hiHaJocDiferenciat() + "\n");
+        
+        List<String> idReptes = new ArrayList<>();
+        {
+            Iterator<Repte> it = k.recuperarIteradorReptes(t);
+            while(it.hasNext()) {
+                Repte r = it.next();
+                idReptes.add(r.obtenirId());
+                System.out.print(r.obtenirTipus());
+                System.out.print("Repte " + r.obtenirId() + " " + r.obtenirTipus().toString() + " || ");
+            }
+            System.out.print("\n");
+        }
+        
+        for (String idRepte : idReptes) {
+
+            System.out.print("Id repte" + idRepte + "\n");
+            System.out.print("Joc diferenciat - " + k.hiHaJocDiferenciat() + "\n");
+            System.out.print("Repte + repte al taulell - " + k.hiHaRepteAlTaulell(t, idRepte) + "\n");
+            System.out.print("Hi ha tirada pel repte al joc diferenciat - " + k.hiHaTiradaPelRepteAlJocDiferenciat(idRepte) + "\n");
+            System.out.print("Tirada diferenciada - " + k.hiHaTiradaDiferenciada() + "\n");
+            if(k.hiHaTiradaDiferenciada()) {
+                System.out.print("Tirada diferenciada amb tria - " + k.teTiradaDiferenciadaTria() + "\n");
+            }
+            
+            k.iniciNovaTirada(idRepte);
+            
+            System.out.print("Tirada diferenciada - " + k.hiHaTiradaDiferenciada() + "\n");
+            
+            List<String> ids = new ArrayList<>();
+            Repte r = k.recuperarRepte(t, idRepte);
+            {
+                Iterator<Proposta> it = k.recuperarIteradorPropostes(r);
+                while(it.hasNext()) {
+                    Proposta p = it.next();
+                    ids.add(p.obtenirId());
+                }
+            }
+
+            for (String s : ids) {
+                System.out.print("Tirada diferenciada - " + k.hiHaTiradaDiferenciada() + "\n");
+                System.out.print("Id proposta" + s + " al repte " + r.obtenirId() + " " + k.hiHaPropostaAlRepte(r, s) + "\n");
+                System.out.print("Id proposta" + s + " a la tirada " + k.hiHaPropostaALaTiradaDiferenciada(s) + "\n");
+
+                k.introduccioTria(s);
+                System.out.print("Id proposta" + s + " a la tirada " + k.hiHaPropostaALaTiradaDiferenciada(s) + "\n");
+            }
+        }
+        
+        System.out.print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+        
+    }
+
+    private static void testNouJocAnonim(K k) {
+        return;
     }
 }

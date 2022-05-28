@@ -11,6 +11,7 @@ public class K {
     Map<String, Taulell> _taulells;
     Enigma _enigmaDiferenciat;
     Taulell _taulellDiferenciat;
+    MagatzemLlulls _magatzemLlulls;
     
     /**
      * Constructor K
@@ -20,6 +21,7 @@ public class K {
         _dataDarreraEliminació = new Date(0);
         _enigmes = new HashMap<>();
         _taulells = new HashMap<>();
+        _magatzemLlulls = new MagatzemLlulls();
     }
 
     /**
@@ -196,15 +198,17 @@ public class K {
     }
     
     /**
-     * TODO descripció
+     * Inicia la creació d'un nou joc amb Llull
      * 
-     * @param nomLlull TODO
-     * @param nomTaulell TODO
-     * @pre TODO
-     * @post TODO
+     * @param nomLlull El nom del Llull
+     * @param nomTaulell El nom del taulell
+     * @pre hiHaTaulellAnomenat(nomTaulell) && elTaulellEsValid && !hiHaJocDiferenciat()
+     * @post hiHaJocDiferenciat() && elJocDiferenciatEsDelLlull(nomLlull) && elJocDiferenciatEsDelTaulell
      */
     public void iniciNouJocLlull(String nomLlull, String nomTaulell) {
-        throw new UnsupportedOperationException("Per programar.");
+        _taulellDiferenciat = _taulells.get(nomTaulell);
+        Llull l = _magatzemLlulls.obtenirLlull(nomLlull);
+        _taulellDiferenciat.iniciNouJocLlull(l);
     }
     
     /**
@@ -219,25 +223,25 @@ public class K {
     }
     
     /**
-     * TODO descripció TODO
+     * Inicia la introducció de una nova tirada
      * 
-     * @param idRepte
-     * @pre TODO
-     * @post TODO
+     * @param idRepte Repte sobre el que es farà la tirada
+     * @pre hiHaJocDiferenciat() && (!hiHaTiradaDiferenciada() || teTiradaDiferenciadaTria()) && hiHaRepteAlTaulell(idRepte) && !hiHaTiradaPelRepte(idRepte)
+     * @post hiHaTiradaDiferenciada() && hiHaTiradaPelRepte(idRepte) && (!hiHaTiradaDiferenciada() || recompte tabes tirada correcte)
      */
     public void iniciNovaTirada(String idRepte) {
-        throw new UnsupportedOperationException("Per programar.");
+        _taulellDiferenciat.iniciNovaTirada(idRepte);
     }
     
     /**
-     * TODO descripció
+     * Introdueix una tria en la tirada diferenciada
      * 
-     * @param idProposta TODO
-     * @pre TODO
-     * @post TODO
+     * @param idProposta Proposta triada
+     * @pre hiHaTiradaDiferenciada() && hiHaPropostaAlRepteDeLaTiradaDiferenciada(idProposta) && !hiHaPropostaALaTiradaDiferenciada(idProposta)
+     * @post hiHaPropostaALaTiradaDiferenciada(idProposta)
      */
     public void introduccioTria(String idProposta) {
-        throw new UnsupportedOperationException("Per programar.");
+        _taulellDiferenciat.introduccióTria(idProposta);
     }
     
     /**
@@ -251,75 +255,89 @@ public class K {
     }
     
     /**
-     * TODO
+     * Comprobador de si existeix un joc diferenciat
      * 
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @pre Ø
+     * @return True si hi ha un joc diferenciat, false en cas contrari
      */
     public Boolean hiHaJocDiferenciat() {
-        throw new UnsupportedOperationException("Per programar.");
+        Boolean b = !(_taulellDiferenciat == null);
+        
+        if(b)
+            b = _taulellDiferenciat.hiHaJocDiferenciat();
+        
+        return b;
     }
     
     /**
-     * TODO
+     * Comprovador de si hi ha el repte identificat per idRepte al taulell
      * 
-     * @param t
-     * @param idRepte
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @param t El taulell
+     * @param idRepte El id del repte a comprovar
+     * @pre Ø
+     * @return True si hi ha un repte al taulell identificat per idRepte
      */
     public Boolean hiHaRepteAlTaulell(Taulell t, String idRepte) {
-        throw new UnsupportedOperationException("Per programar.");
+        return t.hiHaRepte(idRepte);
     }
     
     /**
-     * TODO
+     * Comprovador de si hi ha tirada pel repte identificat per idRepte al joc diferenciat
      * 
-     * @param idRepte
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @param idRepte El id del repte a comprovar
+     * @pre Ø
+     * @return True si hi ha una tirada pel repte al joc diferenciat
      */
     public Boolean hiHaTiradaPelRepteAlJocDiferenciat(String idRepte) {
-        throw new UnsupportedOperationException("Per programar.");
+        return _taulellDiferenciat.hiHaTiradaPelRepteAlJocDiferenciat(idRepte);
     }
     
     /**
-     * TODO
+     * Comprobador de si hi ha tirada diferenciada
      * 
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @pre Ø
+     * @return True si hi ha una tirada diferenciada, false en cas contrari
      */
     public Boolean hiHaTiradaDiferenciada() {
-        throw new UnsupportedOperationException("Per programar.");
+        Boolean b = !(_taulellDiferenciat == null);
+        
+        if(b)
+            b = _taulellDiferenciat.hiHaTiradaDiferenciada();
+        
+        return b;
     }
     
     /**
-     * TODO
+     * Comprovador de si hi ha una propoposta a la tirada diferenciada
      * 
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @pre hiHaTiradaDiferenciada()
+     * @return true si hi ha una proposta a la tirada diferenciada
      */
     public Boolean teTiradaDiferenciadaTria() {
-        throw new UnsupportedOperationException("Per programar.");
+        return _taulellDiferenciat.teTiradaDiferenciadaTria();
     }
     
     
     /**
-     * TODO
+     * Comprovador de si hi ha una propoposta identifiada per idProposta a r
      * 
-     * @param r
-     * @param idProposta
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @param idProposta El id de la proposta a comprovar
+     * @pre Ø
+     * @return True si hi ha una proposta al repte amb id idProposta
      */
     public Boolean hiHaPropostaAlRepte(Repte r, String idProposta) {
-        throw new UnsupportedOperationException("Per programar.");
+        return r.hiHaProposta(idProposta);
+    }
+    
+    /**
+     * Comprovador de si hi ha una propoposta a la tirada diferenciada identificada per idProposta
+     * 
+     * @param idProposta El id de la proposta a comprovar
+     * @pre hiHaTiradaDiferenciada()
+     * @return true si hi ha una proposta amb id idProposta a la tirada diferenciada
+     */
+    public Boolean hiHaPropostaALaTiradaDiferenciada(String idProposta) {
+        return _taulellDiferenciat.hiHaPropostaALaTiradaDiferenciada(idProposta);
     }
     
     /**
@@ -357,7 +375,7 @@ public class K {
     /**
      * Recuperació d'un enigma
      * 
-     * @param nomEnigma
+     * @param nomEnigma nom de l'enigma
      * @pre hiHaEnigmaAnomenat(nomEnigma)
      * @return retorna una copia de l'enigma amb nom nomEnigma
      */
@@ -367,26 +385,28 @@ public class K {
     }
     
     /**
-     * TODO descripció
+     * Recuperació d'un taulell
      * 
-     * @param nomTaulell
-     * @pre TODO
-     * @post TODO
+     * @param nomTaulell nom del taulell
+     * @pre hiHaTaulellAnomenat(nomTaulell)
+     * @return retorna una copia del taulell amb nom nomTaulell
      */
-    public Enigma recuperarTaulell(String nomTaulell) {
-        throw new UnsupportedOperationException("Per programar.");
+    public Taulell recuperarTaulell(String nomTaulell) {
+        // TODO: mirar com fer la copia, per ara, retornem el objecte tal cual
+        return _taulells.get(nomTaulell);
     }
     
     /**
-     * TODO descripció
+     * Recuperació d'un repte del taulell
      * 
-     * @param t
-     * @param idRepte
-     * @pre TODO
-     * @post TODO
+     * @param t Taulell contenidor del repte
+     * @param idRepte identificador del repte
+     * @pre hiHaRepteAlTaulell(t, idRepte)
+     * @post retorna una copia del repte amb nom idRepte
      */
     public Repte recuperarRepte(Taulell t, String idRepte) {
-        throw new UnsupportedOperationException("Per programar.");
+        // TODO: mirar com fer la copia, per ara, retornem el objecte tal cual
+        return t.recuperarRepte(idRepte);
     }
     
     /**
@@ -400,7 +420,7 @@ public class K {
     }
     
     /**
-     * Recuperador de l'iterador de les propostes de l'enigma
+     * Recuperador de l'iterador de les propostes de l'enigma e
      * 
      * @param e L'enigma contenidor de les propostes
      * @return Iterador de les propostes d'e
@@ -410,36 +430,33 @@ public class K {
     }
     
     /**
-     * TODO descripció
+     * Recuperador de l'iterador de tots els taulells
      * 
-     * @pre TODO
-     * @post TODO
-     * @return 
+     * @pre Ø
+     * @return Iterador de tots els taulells
      */
     public Iterator<Taulell> recuperarIteradorTaulells() {
-        throw new UnsupportedOperationException("Per programar.");
+        return _taulells.values().iterator();
     }
     
     /**
-     * TODO descripció
+     * Recuperador de l'iterador dels reptes del taulell t
      * 
-     * @pre TODO
-     * @post TODO
-     * @return 
+     * @param t El taulell contenidor dels reptes
+     * @return Iterador dels reptes de t
      */
     public Iterator<Repte> recuperarIteradorReptes(Taulell t) {
-        throw new UnsupportedOperationException("Per programar.");
+        return t.recuperarIteradorReptes();
     }
     
     /**
-     * TODO descripció
+     * Recuperador de l'iterador dels reptes del repte r
      * 
-     * @pre TODO
-     * @post TODO
-     * @return 
+     * @param r El repte contenidor de les propostes
+     * @return Iterador de les propostes de r
      */
     public Iterator<Proposta> recuperarIteradorPropostes(Repte r) {
-        throw new UnsupportedOperationException("Per programar.");
+        return r.recuperarIteradorPropostes();
     }
     
     /**
