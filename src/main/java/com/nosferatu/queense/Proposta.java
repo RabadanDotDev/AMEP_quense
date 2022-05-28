@@ -1,6 +1,9 @@
 package com.nosferatu.queense;
 
+import java.util.UUID;
+
 public class Proposta {
+    String _idProposta;
     String _textProposta;
     Boolean _esCorrecta;
     
@@ -13,6 +16,7 @@ public class Proposta {
     public Proposta(String textProposta, Boolean esCorrecta) {
         _textProposta = textProposta;
         _esCorrecta = esCorrecta;
+        _idProposta = UUID.randomUUID().toString();
     }
     
     /**
@@ -33,6 +37,16 @@ public class Proposta {
      */
     public String obtenirText() {
         return _textProposta;
+    }
+    
+    /**
+     * Accés al id de la proposta
+     * 
+     * @pre Ø
+     * @return Retorna el id de la proposta
+     */
+    public String obtenirId() {
+        return _idProposta;
     }
     
     /**
@@ -60,4 +74,6 @@ public class Proposta {
         
         return r;
     }
+
+
 }

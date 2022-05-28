@@ -110,14 +110,14 @@ public class K {
     }
     
     /**
-     * TODO descripció
+     * Afegeix la proposta identificada per idProposta al repte diferenciat
      * 
-     * @param idProposta TODO
-     * @pre TODO
-     * @post TODO
+     * @param idProposta La proposta a afegir
+     * @pre hiHaRepteDiferenciat() && hiHaLaPropostaIdPropostaAlEnigmaFontDelRepteDiferenciat && !hiHaPropostaDinsDeRepteDiferenciat(idProposta)
+     * @post hiHaPropostaDinsDeRepteDiferenciat(idProposta)
      */
     public void seleccionarProposta(String idProposta) {
-        throw new UnsupportedOperationException("Per programar.");
+        _taulellDiferenciat.seleccionarProposta(idProposta);
     }
     
     /**
@@ -173,28 +173,26 @@ public class K {
     }
     
     /**
-     * TODO
+     * Comprovar si hi ha una proposta identificada per idProposta en e
      * 
-     * @param e
-     * @param idProposta
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @param e L'enigma a identificar
+     * @param idProposta El id de la proposta
+     * @pre Ø
+     * @return True si existeix una proposta identificada per idProposta en e, false en cas contrari.
      */
     public Boolean hiHaPropostaDinsDeEnigma(Enigma e, String idProposta) {
-        throw new UnsupportedOperationException("Per programar.");
+        return e.hiHaProposta(idProposta);
     }
 
     /**
-     * TODO
+     * Comprovar si hi ha una proposta identificada per idProposta en el repte diferenciat
      * 
-     * @param idProposta
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @param idProposta El id de la proposta
+     * @pre hiHaRepteDiferenciat()
+     * @return True si existeix una proposta identificada per idProposta en el repte diferenciat, false en cas contrari.
      */
     public Boolean hiHaPropostaDinsDeRepteDiferenciat(String idProposta) {
-        throw new UnsupportedOperationException("Per programar.");
+        return _taulellDiferenciat.hiHaPropostaDinsDeRepteDiferenciat(idProposta);
     }
     
     /**
@@ -357,14 +355,15 @@ public class K {
     }
     
     /**
-     * TODO descripció
+     * Recuperació d'un enigma
      * 
      * @param nomEnigma
-     * @pre TODO
-     * @post TODO
+     * @pre hiHaEnigmaAnomenat(nomEnigma)
+     * @return retorna una copia de l'enigma amb nom nomEnigma
      */
     public Enigma recuperarEnigma(String nomEnigma) {
-        throw new UnsupportedOperationException("Per programar.");
+        // TODO: mirar com fer la copia, per ara, retornem el objecte tal cual
+        return _enigmes.get(nomEnigma);
     }
     
     /**

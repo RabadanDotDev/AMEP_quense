@@ -45,14 +45,14 @@ public class Taulell {
     }
     
     /**
-     * TODO descripció
+     * Afegeix la proposta identificada per idProposta al repte diferenciat
      * 
-     * @param idProposta TODO
-     * @pre TODO
-     * @post TODO
+     * @param idProposta La proposta a afegir
+     * @pre hiHaRepteDiferenciat() && hiHaLaPropostaIdPropostaAlEnigmaFontDelRepteDiferenciat && !hiHaPropostaDinsDeRepteDiferenciat(idProposta)
+     * @post hiHaPropostaDinsDeRepteDiferenciat(idProposta)
      */
     public void seleccionarProposta(String idProposta) {
-        throw new UnsupportedOperationException("Per programar.");
+        _repteDiferenciat.seleccionarProposta(idProposta);
     }
     
     /**
@@ -119,15 +119,14 @@ public class Taulell {
     }
 
     /**
-     * TODO
+     * Comprovar si hi ha una proposta identificada per idProposta en el repte diferenciat
      * 
-     * @param idProposta
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @param idProposta El id de la proposta
+     * @pre hiHaRepteDiferenciat()
+     * @return True si existeix una proposta identificada per idProposta en el repte diferenciat, false en cas contrari.
      */
     public Boolean hiHaPropostaDinsDeRepteDiferenciat(String idProposta) {
-        throw new UnsupportedOperationException("Per programar.");
+        return _repteDiferenciat.hiHaProposta(idProposta);
     }
     
     /**

@@ -34,7 +34,7 @@ public class Enigma {
      */
     public void introduirProposta(String textProposta, Boolean esCorrecta) {
         Proposta p = new Proposta(textProposta, esCorrecta);
-        _propostes.put(UUID.randomUUID().toString(), p);
+        _propostes.put(p.obtenirId(), p);
     }
     
     /**
@@ -68,27 +68,25 @@ public class Enigma {
     }
     
     /**
-     * Descripción TODO
+     * Encaixa l'id de la proposta
      * 
-     * @param idProposta TODO
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @param idProposta La proposta a encaixar
+     * @pre hiHaProposta(idProposta)
+     * @return La proposta identificada per idProposta
      */
     public Proposta encaixarProposta(String idProposta) {
-        throw new UnsupportedOperationException("Per programar.");
+        return _propostes.get(idProposta);
     }
     
     /**
-     * Descripción TODO
+     * Comprovar si hi ha una proposta identificada per idProposta
      * 
-     * @param idProposta
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @param idProposta El id de la proposta
+     * @pre Ø
+     * @return True si existeix una proposta identificada per idProposta, false en cas contrari.
      */
     public Boolean hiHaProposta(String idProposta) {
-        throw new UnsupportedOperationException("Per programar.");
+        return _propostes.containsKey(idProposta);
     }
     
     /**

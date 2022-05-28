@@ -40,14 +40,14 @@ public class Repte {
     }
     
     /**
-     * TODO descripció
+     * Afegeix la proposta identificada per idProposta al repte diferenciat
      * 
-     * @param idProposta
-     * @pre TODO
-     * @post TODO
+     * @param idProposta La proposta a afegir
+     * @pre hiHaLaPropostaIdPropostaAlEnigmaFont && !hiHaProposta(idProposta)
+     * @post hiHaProposta(idProposta)
      */
     public void seleccionarProposta(String idProposta) {
-        throw new UnsupportedOperationException("Per programar.");
+       _propostes.put(idProposta, _enigmaFont.encaixarProposta(idProposta));
     }
     
     /**
@@ -73,15 +73,14 @@ public class Repte {
     }
     
     /**
-     * TODO descripció
+     * Comprovar si hi ha una proposta identificada per idProposta 
      * 
-     * @param idProposta
-     * @pre TODO
-     * @post TODO
-     * @return 
+     * @param idProposta El id de la proposta
+     * @pre Ø
+     * @return True si existeix una proposta identificada per idProposta, false en cas contrari.
      */
     public Boolean hiHaProposta(String idProposta) {
-        throw new UnsupportedOperationException("Per programar.");
+        return _propostes.containsKey(idProposta);
     }
     
     /**

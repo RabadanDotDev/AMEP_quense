@@ -5,7 +5,7 @@
 
 package com.nosferatu.queense;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -91,5 +91,24 @@ public class QueEnSe {
         k.iniciNouRepte("Suma curiosa");
         
         System.out.print("Repte diferenciat " + k.hiHaRepteDiferenciat()+ "\n");
+        
+        List<String> ids = new ArrayList<>();
+        Enigma e = k.recuperarEnigma("Suma curiosa");
+        {
+            Iterator<Proposta> it = k.recuperarIteradorPropostes(e);
+            while(it.hasNext()) {
+                Proposta p = it.next();
+                ids.add(p.obtenirId());
+            }
+        }
+        
+        for (String s : ids) {
+            System.out.print("Id proposta" + s + " a l'enigma " + e.obtenirNom() + " " + k.hiHaPropostaDinsDeEnigma(e, s) + "\n");
+            System.out.print("Id proposta" + s + " al repte diferenciat " + k.hiHaPropostaDinsDeRepteDiferenciat(s) + "\n");
+            
+            k.seleccionarProposta(s);
+            
+            System.out.print("Id proposta" + s + " al repte diferenciat " + k.hiHaPropostaDinsDeRepteDiferenciat(s) + "\n");
+        }
     }
 }
