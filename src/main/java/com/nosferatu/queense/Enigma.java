@@ -1,6 +1,7 @@
 package com.nosferatu.queense;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 
@@ -57,13 +58,13 @@ public class Enigma {
     }
     
     /**
-     * Descripción TODO
+     * Actualitza el nombre de reptes que estan fonamentats en l'enigma
      * 
-     * @pre TODO
-     * @post TODO
+     * @pre Ø
+     * @post S'ha incrementat en un el nombre de reptes
      */
     public void actualitzarEstadístiquesRepte() {
-        throw new UnsupportedOperationException("Per programar.");
+        _numReptes++;
     }
     
     /**
@@ -91,24 +92,31 @@ public class Enigma {
     }
     
     /**
-     * Descripción TODO
+     * Recuperador del nom de l'enigma
      * 
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @pre Ø
+     * @return El nom
      */
     public String obtenirNom() {
-        throw new UnsupportedOperationException("Per programar.");
+        return _nomEnigma;
     }
     
     /**
-     * Descripción TODO
+     * Recuperador de l'enunciat de l'enigma
      * 
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @pre Ø
+     * @return El text de l'enunciat
      */
     public String obtenirEnunciat() {
-        throw new UnsupportedOperationException("Per programar.");
+        return _textEnunciat;
+    }
+    
+    /**
+     * Recuperador de l'iterador de les propostes
+     * 
+     * @return Iterador de les propostes
+     */
+    public Iterator<Proposta> recuperarIteradorPropostes() {
+        return _propostes.values().iterator();
     }
 }

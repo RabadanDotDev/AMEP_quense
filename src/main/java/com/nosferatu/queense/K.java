@@ -8,17 +8,18 @@ import java.util.Map;
 public class K {
     Date _dataDarreraEliminació;
     Map<String, Enigma> _enigmes;
+    Map<String, Taulell> _taulells;
     Enigma _enigmaDiferenciat;
+    Taulell _taulellDiferenciat;
     
     /**
-     * Descripción TODO
+     * Constructor K
      * 
-     * @pre TODO
-     * @post TODO
      */
     public K(){
         _dataDarreraEliminació = new Date(0);
         _enigmes = new HashMap<>();
+        _taulells = new HashMap<>();
     }
 
     /**
@@ -84,26 +85,28 @@ public class K {
     }
     
     /**
-     * TODO descripció
+     * Inicia la creació d'un nou taulell
      * 
-     * @param nomTaulell TODO
-     * @param dataExpiració TODO
-     * @pre TODO
-     * @post TODO
+     * @param nomTaulell Nom del taulell
+     * @param dataExpiracio Data d'exipració del taulell
+     * @pre !hiHaTaulellDiferenciat() && !hiHaTaulellAnomenat(nomTaulell) && dataActual() < dataExpiració
+     * @post hiHaTaulellDiferenciat() && hiHaTaulellAnomenat(nomTaulell)
      */
-    public void iniciNouTaulell(String nomTaulell, Date dataExpiració) {
-        throw new UnsupportedOperationException("Per programar.");
+    public void iniciNouTaulell(String nomTaulell, Date dataExpiracio) {
+        _taulellDiferenciat = new Taulell(nomTaulell, dataExpiracio);
+        _taulells.put(nomTaulell, _taulellDiferenciat);
     }
     
     /**
-     * TODO descripció
+     * Inicia la creació d'un nou repte al taulell diferenciat
      * 
-     * @param nomEnigmaFont TODO
-     * @pre TODO
-     * @post TODO
+     * @param nomEnigmaFont El nom de l'enigma font
+     * @pre hiHaTaulellDiferenciat() && (!hiHaRepteDiferenciat() || teElRepteDiferenciatFlorIObstacle()) && hiHaEnigmaAnomenat(nomEnigmaFont)
+     * @post hiHaRepteDiferenciat() && estadistiquesRepteActualitzades && (!hiHaRepteDiferenciat() || s'ha posat el tipus correcte al repte diferenciat anterior)
      */
     public void iniciNouRepte(String nomEnigmaFont) {
-        throw new UnsupportedOperationException("Per programar.");
+        Enigma e = _enigmes.get(nomEnigmaFont);
+        _taulellDiferenciat.iniciNouRepte(e);
     }
     
     /**
@@ -135,7 +138,7 @@ public class K {
      * @return TODO
      */
     public Boolean hiHaTaulellDiferenciat() {
-        throw new UnsupportedOperationException("Per programar.");
+        return !(_taulellDiferenciat == null);
     }
     
     /**
@@ -147,18 +150,15 @@ public class K {
      * @return TODO
      */
     public Boolean hiHaTaulellAnomenat(String nomTaulell) {
-        throw new UnsupportedOperationException("Per programar.");
+        return _taulells.containsKey(nomTaulell);
     }
     
     /**
-     * TODO
      * 
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @return true si hi ha un repte diferenciat, false en cas contrari
      */
-    public Boolean hiHaRepteDiferenciat() {
-        throw new UnsupportedOperationException("Per programar.");
+    public Boolean hiHaRepteDiferenciat() {        
+        return hiHaTaulellDiferenciat() && _taulellDiferenciat.hiHaRepteDiferenciat();
     }
     
     /**
@@ -391,25 +391,23 @@ public class K {
     }
     
     /**
-     * TODO descripció
+     * Recuperador de l'iterador de enigmes
      * 
-     * @pre TODO
-     * @post TODO
-     * @return 
+     * @pre Ø
+     * @return Iterador de tots els enigmes
      */
     public Iterator<Enigma> recuperarIteradorEnigmes() {
-        throw new UnsupportedOperationException("Per programar.");
+        return _enigmes.values().iterator();
     }
     
     /**
-     * TODO descripció
+     * Recuperador de l'iterador de les propostes de l'enigma
      * 
-     * @pre TODO
-     * @post TODO
-     * @return 
+     * @param e L'enigma contenidor de les propostes
+     * @return Iterador de les propostes d'e
      */
-    public Iterator<Proposta> recuperarIteradorPropostes() {
-        throw new UnsupportedOperationException("Per programar.");
+    public Iterator<Proposta> recuperarIteradorPropostes(Enigma e) {
+        return e.recuperarIteradorPropostes();
     }
     
     /**

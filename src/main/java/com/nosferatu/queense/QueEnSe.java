@@ -6,7 +6,9 @@
 package com.nosferatu.queense;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  *
@@ -17,6 +19,7 @@ public class QueEnSe {
     public static void main(String[] args) {
         K k = new K();
         testNouEnigma(k);
+        testNouTaulell(k);
     }
     
     public static void testNouEnigma(K k){
@@ -49,5 +52,44 @@ public class QueEnSe {
         k.fiNouEnigma();
         
         System.out.print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    }
+    
+    public static void testNouTaulell(K k){       
+        System.out.print("Taulell diferenciat " + k.hiHaTaulellDiferenciat() + "\n");
+        System.out.print("Taulell anomenat 'El taulell 1' " + k.hiHaTaulellAnomenat("El taulell 1") + "\n");
+        
+        k.iniciNouTaulell("El taulell 1", new Date(2022, 12, 5));
+        
+        System.out.print("Taulell diferenciat " + k.hiHaTaulellDiferenciat() + "\n");
+        System.out.print("Taulell anomenat 'El taulell 1' " + k.hiHaTaulellAnomenat("El taulell 1") + "\n");
+        
+        {
+            System.out.print("enigmes");
+            Iterator<Enigma> it = k.recuperarIteradorEnigmes();
+            while(it.hasNext()) {
+                Enigma e = it.next();
+                System.out.print("[" + e.obtenirNom() + " " + e.obtenirEnunciat() + " {");
+                
+                Iterator<Proposta> it2 = k.recuperarIteradorPropostes(e);
+                while(it2.hasNext()) {
+                    Proposta p = it2.next();
+                    System.out.print(p.obtenirText() + " " + p.esCorrecta());
+                    if(it2.hasNext()) {
+                        System.out.print(", ");
+                    }
+                }
+                
+                System.out.print("}");
+            }
+            System.out.print("]\n");
+        }
+        
+        System.out.print("Enigma anomenat suma curiosa " + k.hiHaEnigmaAnomenat("Suma curiosa") + "\n");
+        System.out.print("Taulell diferenciat " + k.hiHaTaulellDiferenciat() + "\n");
+        System.out.print("Repte diferenciat " + k.hiHaRepteDiferenciat()+ "\n");
+        
+        k.iniciNouRepte("Suma curiosa");
+        
+        System.out.print("Repte diferenciat " + k.hiHaRepteDiferenciat()+ "\n");
     }
 }

@@ -1,12 +1,18 @@
 package com.nosferatu.queense;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class Taulell {
     String _nomTaulell;
     Date _dataExpiracio;
     Boolean _esValid;
     Integer _numReptes;
+    Map<String, Repte> _reptes;
+    Repte _repteDiferenciat;
+    Map<String, Joc> _jocs;
     
     /**
      * Constructor taulell
@@ -19,17 +25,23 @@ public class Taulell {
         _dataExpiracio = dataExpiracio;
         _esValid = true;
         _numReptes = 0;
+        _reptes = new HashMap<>();
+        _jocs = new HashMap<>();
     }
     
     /**
-     * TODO descripció
+     * Inicia la creació d'un nou repte
      * 
-     * @param e TODO
-     * @pre TODO
-     * @post TODO
+     * @param e L'enigma font
+     * @pre (!hiHaRepteDiferenciat() || teElRepteDiferenciatFlorIObstacle())
+     * @post hiHaRepteDiferenciat() && estadistiquesRepteActualitzades && (!hiHaRepteDiferenciat() || s'ha posat el tipus correcte al repte diferenciat anterior)
      */
     public void iniciNouRepte(Enigma e) {
-        throw new UnsupportedOperationException("Per programar.");
+        if(this.hiHaRepteDiferenciat())
+            this.posarRepteTipusCorrecte();
+        
+        this.crearRepte(e);
+        this.actualitzarEstadistiquesRepte(e);
     }
     
     /**
@@ -54,46 +66,45 @@ public class Taulell {
     }
     
     /**
-     * TODO descripció
+     * Posar al repte diferenciat el tipus correcte
      * 
-     * @pre TODO
-     * @post TODO
+     * @pre hiHaRepteDiferenciat()
+     * @post El repte té el tipus correcte
      */
     private void posarRepteTipusCorrecte() {
-        throw new UnsupportedOperationException("Per programar.");
+        _repteDiferenciat.posarRepteTipusCorrecte();
     }
     
     /**
-     * TODO descripció
+     * Creador d'un repte a partir d'un enigma
      * 
-     * @param e TODO
-     * @pre TODO
-     * @post TODO
+     * @param e Enigma font
+     * @pre Ø
+     * @post Hi ha un nou repte i aquest es el diferenciat
      */
     private void crearRepte(Enigma e) {
-        throw new UnsupportedOperationException("Per programar.");
+        _repteDiferenciat = new Repte(e, this);
+        _reptes.put(UUID.randomUUID().toString(), _repteDiferenciat);
     }
     
     /**
-     * TODO descripció
+     * Actualitza el nombre de reptes de l'enigma y el taulell
      * 
-     * @param e TODO
-     * @pre TODO
-     * @post TODO
+     * @param e Enigma a actualitzar
+     * @pre Ø
+     * @post S'ha incrementat en un el nombre de reptes del taulell i de e
      */
     private void actualitzarEstadistiquesRepte(Enigma e) {
-        throw new UnsupportedOperationException("Per programar.");
+        _numReptes++;
+        e.actualitzarEstadístiquesRepte();
     }
     
     /**
-     * TODO
      * 
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @return true si hi ha un repte diferenciat, false en cas contrari
      */
     public Boolean hiHaRepteDiferenciat() {
-        throw new UnsupportedOperationException("Per programar.");
+        return !(_repteDiferenciat == null);
     }
     
     /**
