@@ -55,6 +55,8 @@ public class QueEnSe {
     }
     
     public static void testNouTaulell(K k){       
+        System.out.print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+        System.out.print("test nou enigma\n");
         System.out.print("Taulell diferenciat " + k.hiHaTaulellDiferenciat() + "\n");
         System.out.print("Taulell anomenat 'El taulell 1' " + k.hiHaTaulellAnomenat("El taulell 1") + "\n");
         
@@ -88,27 +90,77 @@ public class QueEnSe {
         System.out.print("Taulell diferenciat " + k.hiHaTaulellDiferenciat() + "\n");
         System.out.print("Repte diferenciat " + k.hiHaRepteDiferenciat()+ "\n");
         
-        k.iniciNouRepte("Suma curiosa");
-        
-        System.out.print("Repte diferenciat " + k.hiHaRepteDiferenciat()+ "\n");
-        
-        List<String> ids = new ArrayList<>();
-        Enigma e = k.recuperarEnigma("Suma curiosa");
         {
-            Iterator<Proposta> it = k.recuperarIteradorPropostes(e);
-            while(it.hasNext()) {
-                Proposta p = it.next();
-                ids.add(p.obtenirId());
+            System.out.print("....... Suma normal ....... \n");
+            k.iniciNouRepte("Suma normal");
+            System.out.print("Repte diferenciat - " + k.teElRepteDiferenciatFlorIObstacle() + "\n");
+        
+            System.out.print("Repte diferenciat " + k.hiHaRepteDiferenciat()+ "\n");
+
+            List<String> ids = new ArrayList<>();
+            Enigma e = k.recuperarEnigma("Suma normal");
+            {
+                Iterator<Proposta> it = k.recuperarIteradorPropostes(e);
+                while(it.hasNext()) {
+                    Proposta p = it.next();
+                    ids.add(p.obtenirId());
+                }
             }
+
+            for (String s : ids) {
+
+                System.out.print("Id proposta" + s + " a l'enigma " + e.obtenirNom() + " " + k.hiHaPropostaDinsDeEnigma(e, s) + "\n");
+                System.out.print("Id proposta" + s + " al repte diferenciat " + k.hiHaPropostaDinsDeRepteDiferenciat(s) + "\n");
+
+                k.seleccionarProposta(s);
+                System.out.print("Repte diferenciat - " + k.teElRepteDiferenciatFlorIObstacle() + "\n");
+
+                System.out.print("Id proposta" + s + " al repte diferenciat " + k.hiHaPropostaDinsDeRepteDiferenciat(s) + "\n");
+            }
+
+            System.out.print("Repte diferenciat - " + k.teElRepteDiferenciatFlorIObstacle() + "\n");
+        }
+            
+        {
+            System.out.print("....... Suma curiosa ....... \n");
+            k.iniciNouRepte("Suma curiosa");
+            System.out.print("Repte diferenciat - " + k.teElRepteDiferenciatFlorIObstacle() + "\n");
+        
+            System.out.print("Repte diferenciat " + k.hiHaRepteDiferenciat()+ "\n");
+
+            List<String> ids = new ArrayList<>();
+            Enigma e = k.recuperarEnigma("Suma curiosa");
+            {
+                Iterator<Proposta> it = k.recuperarIteradorPropostes(e);
+                while(it.hasNext()) {
+                    Proposta p = it.next();
+                    ids.add(p.obtenirId());
+                }
+            }
+
+            for (String s : ids) {
+
+                System.out.print("Id proposta" + s + " a l'enigma " + e.obtenirNom() + " " + k.hiHaPropostaDinsDeEnigma(e, s) + "\n");
+                System.out.print("Id proposta" + s + " al repte diferenciat " + k.hiHaPropostaDinsDeRepteDiferenciat(s) + "\n");
+
+                k.seleccionarProposta(s);
+                System.out.print("Repte diferenciat - " + k.teElRepteDiferenciatFlorIObstacle() + "\n");
+
+                System.out.print("Id proposta" + s + " al repte diferenciat " + k.hiHaPropostaDinsDeRepteDiferenciat(s) + "\n");
+            }
+            
+            System.out.print("Repte diferenciat - " + k.teElRepteDiferenciatFlorIObstacle() + "\n");
         }
         
-        for (String s : ids) {
-            System.out.print("Id proposta" + s + " a l'enigma " + e.obtenirNom() + " " + k.hiHaPropostaDinsDeEnigma(e, s) + "\n");
-            System.out.print("Id proposta" + s + " al repte diferenciat " + k.hiHaPropostaDinsDeRepteDiferenciat(s) + "\n");
-            
-            k.seleccionarProposta(s);
-            
-            System.out.print("Id proposta" + s + " al repte diferenciat " + k.hiHaPropostaDinsDeRepteDiferenciat(s) + "\n");
-        }
+        System.out.print("Taulell diferenciat " + k.hiHaTaulellDiferenciat() + "\n");
+        System.out.print("Repte diferenciat " + k.hiHaRepteDiferenciat()+ "\n");
+        System.out.print("Repte diferenciat - " + k.teElRepteDiferenciatFlorIObstacle() + "\n");
+        
+        System.out.print("....... fi taulell ....... \n");
+        k.fiNouTaulell();
+        System.out.print("Repte diferenciat " + k.hiHaRepteDiferenciat()+ "\n");
+        System.out.print("Taulell diferenciat " + k.hiHaTaulellDiferenciat() + "\n");
+        
+        System.out.print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     }
 }

@@ -51,25 +51,23 @@ public class Repte {
     }
     
     /**
-     * TODO descripció
+     * Consultor nombre de llavors
      * 
-     * @pre TODO
-     * @post TODO
-     * @return 
+     * @pre Ø
+     * @return Retorna el nombre de propostes correctes contingudes
      */
     public Integer numLlavors() {
-        throw new UnsupportedOperationException("Per programar.");
+        return _propostes.values().stream().mapToInt(Proposta::retorna1SiCorrecta).sum();
     }
     
     /**
-     * TODO descripció
+     * Consultor nombre de llavors
      * 
-     * @pre TODO
-     * @post TODO
-     * @return 
+     * @pre Ø
+     * @return Retorna el nombre de propostes incorrectes contingudes
      */
     public Integer numObstacles() {
-        throw new UnsupportedOperationException("Per programar.");
+        return _propostes.values().stream().mapToInt(Proposta::retorna1SiIncorrecta).sum();
     }
     
     /**

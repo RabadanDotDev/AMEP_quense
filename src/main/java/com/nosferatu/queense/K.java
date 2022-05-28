@@ -121,13 +121,14 @@ public class K {
     }
     
     /**
-     * TODO descripció
+     * Finalitza la creació d'un nou taulell
      * 
-     * @pre TODO
-     * @post TODO
+     * @pre hiHaTaulellDiferenciat() && hiHaRepteDiferenciat() && teElRepteDiferenciatFlorIObstacle()
+     * @post !hiHaTaulellDiferenciat() && !hiHaRepteDiferenciat()
      */
     public void fiNouTaulell() {
-        throw new UnsupportedOperationException("Per programar.");
+        _taulellDiferenciat.fiNouTaulell();
+        _taulellDiferenciat = null;
     }
     
     /**
@@ -162,14 +163,13 @@ public class K {
     }
     
     /**
-     * TODO
+     * Comprovar si el repte diferenciat te flor i obstacle
      * 
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @pre hiHaRepteDiferenciat()
+     * @return true si el repte diferenciat té flor i obstacle, false en cas contrari
      */
     public Boolean teElRepteDiferenciatFlorIObstacle() {
-        throw new UnsupportedOperationException("Per programar.");
+        return _taulellDiferenciat.teElRepteDiferenciatFlorIObstacle();
     }
     
     /**
