@@ -1,10 +1,14 @@
 package com.nosferatu.queense;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 public class K {
-    Date dataDarreraEliminació;
+    Date _dataDarreraEliminació;
+    Map<String, Enigma> _enigmes;
+    Enigma _enigmaDiferenciat;
     
     /**
      * Descripción TODO
@@ -13,7 +17,8 @@ public class K {
      * @post TODO
      */
     public K(){
-        dataDarreraEliminació = new Date(0);
+        _dataDarreraEliminació = new Date(0);
+        _enigmes = new HashMap<>();
     }
 
     /**
@@ -21,11 +26,12 @@ public class K {
      * 
      * @param nomEnigma El nom del nou l'enigma
      * @param textEnunciat L'enunciat de l'enigma
-     * @pre TODO
-     * @post TODO
+     * @pre !hiHaEnigmaDiferenciat() && !hiHaEnigmaAnomenat(nomEnigma)
+     * @post hiHaEnigmaDiferenciat() && hiHaEnigmaAnomenat(nomEnigma)
      */
     public void iniciNouEnigma(String nomEnigma, String textEnunciat) {
-        throw new UnsupportedOperationException("Per programar.");
+        _enigmaDiferenciat = new Enigma(nomEnigma, textEnunciat);
+        _enigmes.put(nomEnigma, _enigmaDiferenciat);
     }
 
     /**
@@ -33,44 +39,48 @@ public class K {
      * 
      * @param textProposta El text de la proposta introduïda.
      * @param esCorrecta Correctesa de la proposta introduïda.
-     * @pre TODO
-     * @post TODO
+     * @pre hiHaEnigmaDiferenciat()
+     * @post S'ha creat una proposta amb textProposta i correctesa esCorrecta dins de l'enigma diferenciat
      */
     public void introduirProposta(String textProposta, Boolean esCorrecta) {
-        throw new UnsupportedOperationException("Per programar.");
+        _enigmaDiferenciat.introduirProposta(textProposta, esCorrecta);
     }
 
     /**
      * Finalitza la creació del nou enigma
      * 
-     * @pre TODO
-     * @post TODO
+     * @pre hiHaEnigmaDiferenciat && teEnigmaDiferenciatPedraIFlor()
+     * @post !hiHaEnigmaDiferenciat()
      */
     public void fiNouEnigma() {
-        throw new UnsupportedOperationException("Per programar.");
+        _enigmaDiferenciat = null;
     }
     
     /**
-     * TODO
      * 
-     * @pre TODO
-     * @post TODO
-     * @return 
+     * @return retorna true si hi ha un enigma diferenciat, false en cas contrari
      */
     public Boolean hiHaEnigmaDiferenciat() {
-        throw new UnsupportedOperationException("Per programar.");
+        Boolean b = _enigmaDiferenciat != null;
+        return b;
     }
     
     /**
-     * TODO
      * 
-     * @param nomEnigma
-     * @pre TODO
-     * @post TODO
-     * @return 
+     * @param nomEnigma El nom de l'enigma a consultar la seva existència
+     * @return True si existeix un enigma anomenat nomEnigma, false en cas contrari.
      */
     public Boolean hiHaEnigmaAnomenat(String nomEnigma) {
-        throw new UnsupportedOperationException("Per programar.");
+        return _enigmes.containsKey(nomEnigma);
+    }
+    
+    /**
+     * 
+     * @pre hiHaEnigmaDiferenciat()
+     * @return True si hi ha al menys una pedra i una flor en el enigma diferenciat, false en cas contrari
+     */
+    public Boolean teEnigmaDiferenciatPedraIFlor() {
+        return 0 < _enigmaDiferenciat.numFlors() && 0 < _enigmaDiferenciat.numPedres();
     }
     
     /**

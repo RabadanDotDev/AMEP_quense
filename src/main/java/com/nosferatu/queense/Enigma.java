@@ -1,27 +1,59 @@
 package com.nosferatu.queense;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 public class Enigma {
+    String _nomEnigma;
+    String _textEnunciat;
+    Integer _numReptes;
+    Map<String, Proposta> _propostes;
     
     /**
-     * Descripción TODO
+     * Constructor
      * 
-     * @param nomEnigma TODO
-     * @param textProposta TODO
+     * @param nomEnigma El nom del nou l'enigma
+     * @param textEnunciat L'enunciat de l'enigma
      */
-    public Enigma(String nomEnigma, String textProposta) {
-        throw new UnsupportedOperationException("Per programar.");
+    public Enigma(String nomEnigma, String textEnunciat) {
+        _nomEnigma = nomEnigma;
+        _textEnunciat = textEnunciat;
+        _numReptes = 0;
+        _propostes = new HashMap<>();
     }
     
     /**
-     * Descripción TODO
+     * Introductor de propostes
      * 
      * @param textProposta TODO
      * @param esCorrecta TODO
-     * @pre TODO
-     * @post TODO
+     * @pre Ø
+     * @post S'ha creat una proposta amb textProposta i correctesa esCorrecta dins de l'enigma
      */
     public void introduirProposta(String textProposta, Boolean esCorrecta) {
-        throw new UnsupportedOperationException("Per programar.");
+        Proposta p = new Proposta(textProposta, esCorrecta);
+        _propostes.put(UUID.randomUUID().toString(), p);
+    }
+    
+    /**
+     * Consultor nombre de pedres
+     * 
+     * @pre Ø
+     * @return Retorna el nombre de propostes incorrectes contingudes
+     */
+    public Integer numPedres() {
+        return _propostes.values().stream().mapToInt(Proposta::retorna1SiIncorrecta).sum();
+    }
+    
+    /**
+     * Consultor nombre de flors
+     * 
+     * @pre Ø
+     * @return Retorna el nombre de propostes correctes contingudes
+     */
+    public Integer numFlors() {
+        return _propostes.values().stream().mapToInt(Proposta::retorna1SiCorrecta).sum();
     }
     
     /**
@@ -43,28 +75,6 @@ public class Enigma {
      * @return TODO
      */
     public Proposta encaixarProposta(String idProposta) {
-        throw new UnsupportedOperationException("Per programar.");
-    }
-    
-    /**
-     * Descripción TODO
-     * 
-     * @pre TODO
-     * @post TODO
-     * @return TODO
-     */
-    public Integer numPedres() {
-        throw new UnsupportedOperationException("Per programar.");
-    }
-    
-    /**
-     * Descripción TODO
-     * 
-     * @pre TODO
-     * @post TODO
-     * @return TODO
-     */
-    public Integer numFlors() {
         throw new UnsupportedOperationException("Per programar.");
     }
     
