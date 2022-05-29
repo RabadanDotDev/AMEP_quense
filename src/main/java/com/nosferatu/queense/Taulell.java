@@ -156,7 +156,7 @@ public class Taulell {
     }
     
     /**
-     * Inicia la introducció de una nova tirada
+     * Inicia la introducció d'una nova tirada
      * 
      * @param idRepte Repte sobre el que es farà la tirada
      * @pre hiHaJocDiferenciat() && (!hiHaTiradaDiferenciada() || teTiradaDiferenciadaTria()) && hiHaRepteAlTaulell(idRepte) && !hiHaTiradaPelRepte(idRepte)
@@ -257,10 +257,10 @@ public class Taulell {
     }
     
     /**
-     * Comprovador de si el joc diferenciat es complert
+     * Comprovador de si el joc diferenciat és complert
      * 
      * @pre hiHaJocDiferenciat()
-     * @return True si el joc diferenciat es complert, false en cas contrari.
+     * @return True si el joc diferenciat és complert, false en cas contrari.
      */
     public Boolean jocDiferenciatEsComplet() {
         Map<String, Repte> temp = _jocDiferenciat.obtenirReptes();
@@ -274,7 +274,7 @@ public class Taulell {
      * @return True si és valid, false en cas contrari
      */
     public Boolean esValid() {
-        return (_dataExpiracio.after(new Date()));
+        return (_esValid = _dataExpiracio.after(new Date()));
     }
     
     /**

@@ -10,7 +10,7 @@ public class Tirada {
     Map<String, Proposta> _tries;
     
     /**
-     * Descripción TODO
+     * Constructor
      * 
      * @param r
      */

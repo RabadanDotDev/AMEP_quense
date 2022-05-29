@@ -20,22 +20,22 @@ public class Llull {
     }
     
     /**
-     * Permet el Llull apriopiar-se d'un joc
+     * Permet al Llull apriopiar-se d'un joc
      * 
      * @param j El joc a apropiar
      * @pre Ø
-     * @post El llull ha guardat el joc
+     * @post El Llull ha guardat el joc
      */
     public void apropiarJoc(Joc j) {
         _jocsApropiats.put(j.obtenirId(), j);
     }
     
     /**
-     * Permet comunicar un repte que el llull ha suspès perquè el guardi.
+     * Permet comunicar un repte que el Llull ha suspès perquè el guardi.
      * 
      * @param r El repte suspès
      * @pre Ø
-     * @post El llull ha guardat r
+     * @post El Llull ha guardat r
      */
     public void repteSuspes(Repte r) {
         _reptesSuspesos.put(r.obtenirId(), r);

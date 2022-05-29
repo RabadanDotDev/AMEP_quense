@@ -223,7 +223,7 @@ public class K {
     }
     
     /**
-     * Inicia la introducció de una nova tirada
+     * Inicia la introducció d'una nova tirada
      * 
      * @param idRepte Repte sobre el que es farà la tirada
      * @pre hiHaJocDiferenciat() && (!hiHaTiradaDiferenciada() || teTiradaDiferenciadaTria()) && hiHaRepteAlTaulell(idRepte) && !hiHaTiradaPelRepte(idRepte)
@@ -245,7 +245,7 @@ public class K {
     }
     
     /**
-     * Finalitza la creació del nnou joc
+     * Finalitza la creació del nou joc
      * 
      * @pre hiHaJocDiferenciat() && hiHaTiradaDiferenciada() && jocDiferenciatEsComplert()
      * @post !hiHaTiradaDiferenciada() && !hiHaJocDiferenciat() && recompte tabes ultima tirada correcte
@@ -271,7 +271,7 @@ public class K {
     }
     
     /**
-     * Comprovador de si hi ha el repte identificat per idRepte al taulell
+     * Comprovador de si el repte identificat per idRepte es troba al taulell
      * 
      * @param t El taulell
      * @param idRepte El id del repte a comprovar
@@ -322,6 +322,7 @@ public class K {
     /**
      * Comprovador de si hi ha una propoposta identifiada per idProposta a r
      * 
+     * @param r El repte on cercarem la proposta a comprovar
      * @param idProposta El id de la proposta a comprovar
      * @pre Ø
      * @return True si hi ha una proposta al repte amb id idProposta
@@ -342,10 +343,10 @@ public class K {
     }
     
     /**
-     * Comprovador de si el joc diferenciat es complert
+     * Comprovador de si el joc diferenciat és complert
      * 
      * @pre hiHaJocDiferenciat()
-     * @return True si el joc diferenciat es complert, false en cas contrari.
+     * @return True si el joc diferenciat és complert, false en cas contrari.
      */
     public Boolean jocDiferenciatEsComplet() {
         return _taulellDiferenciat.jocDiferenciatEsComplet();                

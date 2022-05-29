@@ -133,7 +133,7 @@ public class Joc {
     }
     
     /**
-     * Retorna un map de tots els reptes els quals s'han fet tirades en el jo
+     * Retorna un map de tots els reptes dels quals s'han fet tirades en el joc
      * 
      * @pre Ø
      * @return Map amb els reptes de les tirades
