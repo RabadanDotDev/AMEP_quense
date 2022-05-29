@@ -278,14 +278,13 @@ public class Taulell {
     }
     
     /**
-     * TODO
+     * Recuperador del nom del taulell
      * 
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @pre Ø
+     * @return El nom del taulell
      */
     public String obtenirNom() {
-        throw new UnsupportedOperationException("Per programar.");
+        return _nomTaulell;
     }
     
     /**
@@ -302,7 +301,7 @@ public class Taulell {
      * 
      * @param idRepte identificador del repte
      * @pre hiHaRepte(idRepte)
-     * @post retorna el repte amb id idRepte
+     * @return retorna el repte amb id idRepte
      */
     public Repte recuperarRepte(String idRepte) {
         return _reptes.get(idRepte);

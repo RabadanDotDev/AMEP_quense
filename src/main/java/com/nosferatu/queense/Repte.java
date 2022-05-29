@@ -136,7 +136,7 @@ public class Repte {
     }
     
     /**
-     * Recuperador de l'iterador dels reptes del repte r
+     * Recuperador de l'iterador de les propostes del repte r
      * 
      * @return Iterador de les propostes de r
      */

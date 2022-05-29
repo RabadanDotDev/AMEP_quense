@@ -42,10 +42,10 @@ public class Llull {
     }
     
     /**
-     * Esborrar tots els reptes suspesos del llull
+     * Esborrar tots els reptes suspesos del Llull
      * 
      * @pre Ø
-     * @post El llull no té cap suspens recent
+     * @post El Llull no té cap suspens recent
      */
     public void esborrarSuspesos() {
         _reptesSuspesos = new HashMap<>();
