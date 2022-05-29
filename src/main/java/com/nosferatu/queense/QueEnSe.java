@@ -140,17 +140,17 @@ public class QueEnSe {
     }
     
     public static void crearEnigma(){
-        printNomPantalla("Creació de enigma");
+        UtilityCLI.printNomPantalla("Creació de enigma");
         UtilityCLI.demanarNombre("Acció: ", 0, 4);
     }
     
     public static void crearTaulell(){
-        printNomPantalla("Creació de taulel");
+        UtilityCLI.printNomPantalla("Creació de taulel");
         UtilityCLI.demanarNombre("Acció: ", 0, 4);
     }
     
     public static void eliminarSuspesos(){
-        printNomPantalla("Eliminació de suspesos");
+        UtilityCLI.printNomPantalla("Eliminació de suspesos");
         
         System.out.print("Data actual       " + new Date() + "\n");
         System.out.print("Ultima eliminació " + k.obtenirDataDarreraEliminacio() + "\n");
