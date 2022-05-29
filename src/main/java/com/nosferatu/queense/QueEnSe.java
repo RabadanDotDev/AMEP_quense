@@ -258,23 +258,80 @@ public class QueEnSe {
     public static void crearEnigma(){
         Boolean sortir = Boolean.FALSE;
         
+        String nomEnigma = "";
         String enunciat = "";
+        ArrayList<String> propostes = new ArrayList<>(); 
+        ArrayList<Boolean> correcta = new ArrayList<>(); 
+        
         ArrayList<String> opcions = new ArrayList<>();
         {
             opcions.add("Posar nom a l'enigma");
             opcions.add("Posar enunciat a l'enigma");
             opcions.add("Crear proposta");
             opcions.add("Finalitzar");
-            opcions.add("----------------");
         }
-        
         
         while(!sortir) {
-            UtilityCLI.printNomPantalla("Selecció de enigma");
-            System.out.print("Acció: " + enunciat + "\n");
+            UtilityCLI.printNomPantalla("Creació de enigma");
+            System.out.print("Propostes creades: \n");
+            UtilityCLI.mostraLlista(propostes, correcta);
+            System.out.print("Nom enigma: " + nomEnigma + "\n");
+            System.out.print("Enunciat: " + enunciat + "\n");
+            
+            
+            UtilityCLI.mostraLlista(opcions);
+            Integer n = UtilityCLI.demanarNombre("Selecciona una opció: ", 0, opcions.size()-1);
+            switch(n){
+                case 0:
+                    nomEnigma = UtilityCLI.demanarText("Introdueix nom de l'enigma");
+                    break;
+                case 1:
+                    enunciat = UtilityCLI.demanarText("Introdueix l'enunciat de l'enigma");
+                    break;
+                case 2:
+                    String text = UtilityCLI.demanarText("Text proposta");
+                    Boolean b = UtilityCLI.demanarBool("Es correcta");
+                    
+                    propostes.add(text);
+                    correcta.add(b);
+                    break;
+                case 3:
+                    if(nomEnigma == "") {
+                        System.out.print("Cal posar nom a l'enigma. ");
+                        UtilityCLI.demanarText("Pressiona intro per continuar...");
+                        break;
+                    }
+                    
+                    if(k.hiHaEnigmaAnomenat(nomEnigma)) {
+                        System.out.print("El nom de l'enigma ha de ser nou. ");
+                        UtilityCLI.demanarText("Pressiona intro per continuar...");
+                        break;
+                    }
+                    
+                    if(enunciat == "") {
+                        System.out.print("Cal un enunciat. ");
+                        UtilityCLI.demanarText("Pressiona intro per continuar...");
+                        break;
+                    }
+                    
+                    if(correcta.indexOf(Boolean.TRUE) == -1 || correcta.indexOf(Boolean.FALSE) == -1) {
+                        System.out.print("S'ha de afegir una flor i una pedra. ");
+                        UtilityCLI.demanarText("Pressiona intro per continuar...");
+                        break;
+                    }
+                    
+                    k.iniciNouEnigma(nomEnigma, enunciat);
+                    
+                    for (int i = 0; i < propostes.size(); i++)
+                        k.introduirProposta(propostes.get(i), correcta.get(i));
+                    
+                    k.fiNouEnigma();
+                    
+                    sortir = Boolean.TRUE;
+                    
+                    break;
+            }
         }
-        
-        UtilityCLI.demanarNombre("Acció: ", 0, 4);
     }
     
     public static void crearTaulell(){

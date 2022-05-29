@@ -145,6 +145,23 @@ public class UtilityCLI {
     }
     
     /**
+     * Demanar text a l'usuari per consola
+     * 
+     * @param peticio Text a mostrar a l'usuari
+     * @pre Ø
+     * @return el valor introduit per l'usuari
+     */
+    public static Boolean demanarBool(String peticio) {
+        String txt = demanarText(peticio + "(si/no)");
+        
+        while(!("si".equals(txt) || "no".equals(txt)))
+            txt = demanarText(peticio + "(si/no)");
+        
+        return "si".equals(txt);
+    }
+    
+    
+    /**
      * Demanar data a l'usuari per consola
      * 
      * @pre Ø
@@ -152,6 +169,7 @@ public class UtilityCLI {
      * @return la data introduida per l'usuari
      */
     public static Date demanaData() {
+        /*
         Scanner scanner = new Scanner(System.in);
         System.out.println("Introdueix la data en format: dd-mm-yyyy");
         String date;
@@ -175,7 +193,8 @@ public class UtilityCLI {
             }
     }
         System.out.println(date2);
-        return date2;
+        return date2;*/
+        return new Date();
     }
 }
 
