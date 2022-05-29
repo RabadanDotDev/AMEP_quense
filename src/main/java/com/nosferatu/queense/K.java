@@ -461,13 +461,14 @@ public class K {
     }
     
     /**
-     * TODO descripció
+     * Recuperador copia enigma font del repte
      * 
-     * @pre TODO
-     * @post TODO
-     * @return 
+     * @param r El repte del qual està basat l'enigma
+     * @pre Ø
+     * @return Una copia de l'enigma font del repta
      */
     public Enigma recuperarCopiaEnigma(Repte r) {
-        throw new UnsupportedOperationException("Per programar.");
+        // TODO: mirar com fer la copia, per ara, retornem el objecte tal cual
+        return r.recuperarCopiaEnigma();
     }
 }

@@ -125,14 +125,13 @@ public class Repte {
     }
     
     /**
-     * TODO descripció
+     * Recuperador copia enigma font del repte
      * 
-     * @pre TODO
-     * @post TODO
-     * @return 
+     * @pre Ø
+     * @return Una copia de l'enigma font del repta
      */
     public Enigma recuperarCopiaEnigma() {
-        throw new UnsupportedOperationException("Per programar.");
+        return _enigmaFont;
     }
     
     /**
