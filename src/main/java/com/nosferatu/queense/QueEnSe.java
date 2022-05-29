@@ -69,26 +69,27 @@ public class QueEnSe {
         Boolean sortir = Boolean.FALSE;
         String nomLlull = "";
         String nomTaulell = "";
+        
+        ArrayList<String> opcions = new ArrayList<>();
+        {
+            opcions.add("Introduir nom Llull");
+            opcions.add("Jugar");
+            opcions.add("Jugar joc anònim");
+            opcions.add("Enrere");
+            opcions.add("----------------");
+
+            Iterator<Taulell> it = k.recuperarIteradorTaulells();
+            while(it.hasNext()) {
+                Taulell t = it.next();
+                opcions.add(t.obtenirNom());
+            }
+        }
+        
         while(!sortir) {
             UtilityCLI.printNomPantalla("Selecció de taulell");
             System.out.print("Nom llull: " + nomLlull + "\n");
             System.out.print("Nom taulell seleccionat: " + nomTaulell + "\n");
-        
-            ArrayList<String> opcions = new ArrayList<>();
-            {
-                opcions.add("Introduir nom Llull");
-                opcions.add("Jugar");
-                opcions.add("Jugar joc anònim");
-                opcions.add("Enrere");
-                opcions.add("----------------");
-            
-                Iterator<Taulell> it = k.recuperarIteradorTaulells();
-                while(it.hasNext()) {
-                    Taulell t = it.next();
-                    opcions.add(t.obtenirNom());
-                }
-            }
-
+      
             UtilityCLI.mostraLlista(opcions);
             Integer n = UtilityCLI.demanarNombre("Selecciona una opció: ", 0, opcions.size()-1);
             switch(n) {
@@ -97,29 +98,29 @@ public class QueEnSe {
                     break;
                 case 1:
                     if(nomTaulell == "") {
-                        System.out.print("Cal seleccionar un taulell.\n");
+                        System.out.print("Cal seleccionar un taulell. ");
                         UtilityCLI.demanarText("Pressiona intro per continuar...");
                         break;
                     }
                     if(nomLlull == "") {
-                        System.out.print("Cal introduir un nom de Llull.\n");
+                        System.out.print("Cal introduir un nom de Llull. ");
                         UtilityCLI.demanarText("Pressiona intro per continuar...");
                         break;
                     }
                     
                     k.iniciNouJocLlull(nomLlull, nomTaulell);
-                    jugarJoc();
+                    seleccioRepteJoc(k.recuperarTaulell(nomTaulell));
                     
                     break;
                 case 2:
                     if(nomTaulell == "") {
-                        System.out.print("Cal seleccionar un taulell.\n");
+                        System.out.print("Cal seleccionar un taulell. ");
                         UtilityCLI.demanarText("Pressiona intro per continuar...");
                         break;
                     }
                     
                     k.iniciNouJocAnonim(nomTaulell);
-                    jugarJoc();
+                    seleccioRepteJoc(k.recuperarTaulell(nomTaulell));
                     
                     break;
                 case 3:
@@ -135,7 +136,74 @@ public class QueEnSe {
         }
     }
     
-    public static void jugarJoc() {
+    public static void seleccioRepteJoc(Taulell t) {        
+        Boolean sortir = Boolean.FALSE;
+        Integer indexSeleccionat = -1;
+        String idRepte = "";
+        
+        ArrayList<String> opcions = new ArrayList<>();
+        ArrayList<Boolean> reptesAmbTirada = new ArrayList<>();
+        {
+            opcions.add("Fer tirada repte seleccionat");
+            opcions.add("Finalitzar");
+            opcions.add("----------------");
+
+            Iterator<Repte> it = k.recuperarIteradorReptes(t);
+            while(it.hasNext()) {
+                Repte r = it.next();
+                opcions.add(r.obtenirId());
+                reptesAmbTirada.add(Boolean.FALSE);
+            }
+        }
+        
+        while(!sortir) {
+            UtilityCLI.printNomPantalla("Selecció de repte");
+            System.out.print("index seleccionat: " + indexSeleccionat + "\n");
+            System.out.print("id repte seleccionat: " + idRepte + "\n");
+            System.out.print("Cal seleccionar un repte. \n");
+                        
+            UtilityCLI.mostraLlista(opcions);
+            Integer n = UtilityCLI.demanarNombre("Selecciona una opció: ", 0, opcions.size()-1);
+            switch(n) {
+                case 0:
+                    if(indexSeleccionat == -1) {
+                        System.out.print("Cal seleccionar un repte. ");
+                        UtilityCLI.demanarText("Pressiona intro per continuar...");
+                        break;
+                    }
+                    
+                    if(reptesAmbTirada.get(indexSeleccionat - 3)) {
+                        System.out.print("Cal seleccionar un repte sense tirada. ");
+                        UtilityCLI.demanarText("Pressiona intro per continuar...");
+                        break;
+                    }
+                    
+                    k.iniciNovaTirada(idRepte);
+                    seleccioPropostaTirada(k.recuperarRepte(t, idRepte));
+                    reptesAmbTirada.set(indexSeleccionat - 3, Boolean.TRUE);
+                    
+                    break;
+                case 1:
+                    if(reptesAmbTirada.indexOf(Boolean.FALSE) != -1) {
+                        System.out.print("Falten reptes sense tirada. ");
+                        UtilityCLI.demanarText("Pressiona intro per continuar...");
+                        break;
+                    }
+                    
+                    k.fiJoc();
+                    sortir = Boolean.TRUE;
+                    break;
+                case 2:
+                    break;
+                default:
+                    indexSeleccionat = n;
+                    idRepte = opcions.get(n);
+            }
+        }
+        
+    }
+    
+    public static void seleccioPropostaTirada(Repte r){
         
     }
     
