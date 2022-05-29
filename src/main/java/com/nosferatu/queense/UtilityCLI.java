@@ -168,33 +168,25 @@ public class UtilityCLI {
      * @post el valor de retorn no es buit
      * @return la data introduida per l'usuari
      */
-    public static Date demanaData() {
-        /*
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Introdueix la data en format: dd-mm-yyyy");
-        String date;
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        Date date2=null;
-        Boolean llegit = false;
-        while(!llegit){
-        try {
-            date = scanner.next();
-            //Parsing the String
-            date2 = dateFormat.parse(date);
-            int result = date2.compareTo(date2);
-            if(date2){
+    public static Date demanaData(String peticio) {
+        Boolean llegit = Boolean.FALSE;
+        String txt = "";
+        Date d = new Date(0);
             
+        while(!llegit) {
+            txt = demanarText(peticio + "(YYYY-MM-DD)");
+            
+            if(!txt.matches("(?:\\d{4})[-](?:0[1-9]|1[012])[-](?:0[1-9]|[12][0-9]|3[01])"))
+                continue;
+            
+            try {
+                d = new SimpleDateFormat("yyyy-MM-dd").parse(txt);
+                llegit = Boolean.TRUE;
+            } catch (Exception e) {
             }
-            llegit = true;
-            } 
-                catch (ParseException e) {
-            // TODO Auto-generated catch block
-            System.out.println("Data no vàlida, siusplau introdueix-ne una de vàlida.\n");
-            }
-    }
-        System.out.println(date2);
-        return date2;*/
-        return new Date();
+        }
+        
+        return d;
     }
 }
 

@@ -99,12 +99,12 @@ public class QueEnSe {
                 case 1:
                     if(nomTaulell == "") {
                         System.out.print("Cal seleccionar un taulell. ");
-                        UtilityCLI.demanarText("Pressiona intro per continuar...");
+                        UtilityCLI.demanarText("Prem intro per continuar...");
                         break;
                     }
                     if(nomLlull == "") {
                         System.out.print("Cal introduir un nom de Llull. ");
-                        UtilityCLI.demanarText("Pressiona intro per continuar...");
+                        UtilityCLI.demanarText("Prem intro per continuar...");
                         break;
                     }
                     
@@ -115,7 +115,7 @@ public class QueEnSe {
                 case 2:
                     if(nomTaulell == "") {
                         System.out.print("Cal seleccionar un taulell. ");
-                        UtilityCLI.demanarText("Pressiona intro per continuar...");
+                        UtilityCLI.demanarText("Prem intro per continuar...");
                         break;
                     }
                     
@@ -167,13 +167,13 @@ public class QueEnSe {
                 case 0:
                     if(indexSeleccionat == -1) {
                         System.out.print("Cal seleccionar un repte. ");
-                        UtilityCLI.demanarText("Pressiona intro per continuar...");
+                        UtilityCLI.demanarText("Prem intro per continuar...");
                         break;
                     }
                     
                     if(reptesAmbTirada.get(indexSeleccionat - 3)) {
                         System.out.print("Cal seleccionar un repte sense tirada. ");
-                        UtilityCLI.demanarText("Pressiona intro per continuar...");
+                        UtilityCLI.demanarText("Prem intro per continuar...");
                         break;
                     }
                     
@@ -185,7 +185,7 @@ public class QueEnSe {
                 case 1:
                     if(reptesAmbTirada.indexOf(Boolean.FALSE) != -1) {
                         System.out.print("Falten reptes sense tirada. ");
-                        UtilityCLI.demanarText("Pressiona intro per continuar...");
+                        UtilityCLI.demanarText("Prem intro per continuar...");
                         break;
                     }
                     
@@ -235,7 +235,7 @@ public class QueEnSe {
                 case 0:
                     if(seleccio.indexOf(Boolean.TRUE) == -1) {
                         System.out.print("S'ha de seleccionar al menys una proposta. ");
-                        UtilityCLI.demanarText("Pressiona intro per continuar...");
+                        UtilityCLI.demanarText("Prem intro per continuar...");
                         break;
                     }
                     
@@ -278,7 +278,6 @@ public class QueEnSe {
             System.out.print("Nom enigma: " + nomEnigma + "\n");
             System.out.print("Enunciat: " + enunciat + "\n");
             
-            
             UtilityCLI.mostraLlista(opcions);
             Integer n = UtilityCLI.demanarNombre("Selecciona una opció: ", 0, opcions.size()-1);
             switch(n){
@@ -298,25 +297,25 @@ public class QueEnSe {
                 case 3:
                     if(nomEnigma == "") {
                         System.out.print("Cal posar nom a l'enigma. ");
-                        UtilityCLI.demanarText("Pressiona intro per continuar...");
+                        UtilityCLI.demanarText("Prem intro per continuar...");
                         break;
                     }
                     
                     if(k.hiHaEnigmaAnomenat(nomEnigma)) {
                         System.out.print("El nom de l'enigma ha de ser nou. ");
-                        UtilityCLI.demanarText("Pressiona intro per continuar...");
+                        UtilityCLI.demanarText("Prem intro per continuar...");
                         break;
                     }
                     
                     if(enunciat == "") {
                         System.out.print("Cal un enunciat. ");
-                        UtilityCLI.demanarText("Pressiona intro per continuar...");
+                        UtilityCLI.demanarText("Prem intro per continuar...");
                         break;
                     }
                     
                     if(correcta.indexOf(Boolean.TRUE) == -1 || correcta.indexOf(Boolean.FALSE) == -1) {
                         System.out.print("S'ha de afegir una flor i una pedra. ");
-                        UtilityCLI.demanarText("Pressiona intro per continuar...");
+                        UtilityCLI.demanarText("Prem intro per continuar...");
                         break;
                     }
                     
@@ -335,8 +334,117 @@ public class QueEnSe {
     }
     
     public static void crearTaulell(){
-        UtilityCLI.printNomPantalla("Creació de taulel");
-        UtilityCLI.demanarNombre("Acció: ", 0, 4);
+        Boolean sortir = Boolean.FALSE;
+        
+        // Demanar nom taulell
+        String nomTaulell = UtilityCLI.demanarText("Introdueix el nom del taulell");
+        while(k.hiHaTaulellAnomenat(nomTaulell)) {
+            System.out.print("Taulell ya existent");
+            nomTaulell = UtilityCLI.demanarText("Introdueix el nom del taulell");
+        }
+        
+        // Demanar data expiració
+        Date dataExpiracio = UtilityCLI.demanaData("Introdueix la data d'expiració del taulell");
+        while(!dataExpiracio.after(new Date())) {
+            System.out.print("La data ha de ser posterior a avui. \n");
+            dataExpiracio = UtilityCLI.demanaData("Introdueix la data d'expiració del taulell");
+        }
+        
+        k.iniciNouTaulell(nomTaulell, dataExpiracio);
+        
+        ArrayList<String> enigmesDisponibles = new ArrayList<>();
+        Iterator<Enigma> it = k.recuperarIteradorEnigmes();
+        while(it.hasNext()) {
+            Enigma e = it.next();
+            enigmesDisponibles.add(e.obtenirNom());
+        }
+        
+        // crear reptes
+        do {
+            UtilityCLI.mostraLlista(enigmesDisponibles);
+            Integer i = UtilityCLI.demanarNombre("Escull un enigma font", 0, enigmesDisponibles.size()-1);
+            k.iniciNouRepte(enigmesDisponibles.get(i));
+            crearRepte(enigmesDisponibles.get(i));
+        } while (UtilityCLI.demanarBool("Crear un altre repte?"));
+        
+        k.fiNouTaulell();
+    }
+    
+    public static void crearRepte(String idEnigma) {
+        Boolean sortir = Boolean.FALSE;
+        
+        ArrayList<String> opcions = new ArrayList<>();
+        ArrayList<Boolean> seleccio = new ArrayList<>();
+        ArrayList<Boolean> correctesa = new ArrayList<>();
+        ArrayList<String> idsProposta = new ArrayList<>();
+        Integer numObstacles = 0;
+        Integer numLlavors = 0;
+        {
+            opcions.add("Finalitzar");
+            seleccio.add(Boolean.FALSE);
+            opcions.add("----------------");
+            seleccio.add(Boolean.FALSE);
+
+            Iterator<Proposta> it = k.recuperarIteradorPropostes(k.recuperarEnigma(idEnigma));
+            while(it.hasNext()) {
+                Proposta p = it.next();
+                idsProposta.add(p.obtenirId());
+                opcions.add(p.obtenirText());
+                correctesa.add(p.esCorrecta());
+                seleccio.add(Boolean.FALSE);
+            }
+        }
+        
+        while(!sortir) {
+            UtilityCLI.printNomPantalla("Selecció de proposta");
+            System.out.print("num llavors " + numLlavors + "\n");
+            System.out.print("num obstacles " + numObstacles + "\n");
+            
+            UtilityCLI.mostraLlista(opcions, seleccio);
+            Integer n = UtilityCLI.demanarNombre("Selecciona una opció: ", 0, opcions.size()-1);
+            switch(n){
+                case 0:
+                    if(seleccio.indexOf(Boolean.TRUE) == -1) {
+                        System.out.print("S'ha de seleccionar al menys una proposta. ");
+                        UtilityCLI.demanarText("Prem intro per continuar...");
+                        break;
+                    }
+                    
+                    if(!(0 < numLlavors && 0 < numObstacles)) {
+                        System.out.print("S'ha de seleccionar al menys una proposta correcta i una d'incorrecta. ");
+                        UtilityCLI.demanarText("Prem intro per continuar...");
+                        break;
+                    }
+                    
+                    for (int i = 2; i < seleccio.size(); i++) {
+                        if(seleccio.get(i))
+                            k.seleccionarProposta(idsProposta.get(i - 2));
+                    }
+                    
+                    sortir = Boolean.TRUE;
+                    break;
+                case 1:
+                    break;
+                default:
+                    Boolean estaba_selecionada = seleccio.get(n);
+                    
+                    if(estaba_selecionada) {
+                        if(correctesa.get(n - 2)) {
+                            numLlavors--;
+                        } else {
+                            numObstacles--;
+                        }
+                    } else {
+                        if(correctesa.get(n - 2)) {
+                            numLlavors++;
+                        } else {
+                            numObstacles++;
+                        }
+                    }
+                    
+                    seleccio.set(n, !seleccio.get(n));
+            }
+        }
     }
     
     public static void eliminarSuspesos(){
@@ -348,5 +456,6 @@ public class QueEnSe {
         k.esborrarSuspesos();
         System.out.print("Suspesos esborrats \n");
         System.out.print("Ultima eliminació " + k.obtenirDataDarreraEliminacio() + "\n");
+        UtilityCLI.demanarText("Prem intro per continuar...");
     }
 }
