@@ -227,6 +227,7 @@ public class QueEnSe {
         while(!sortir) {
             UtilityCLI.printNomPantalla("Selecció de proposta");
             System.out.print("Enigma: " + enunciat + "\n");
+            System.out.print("Tipus: " + r.obtenirTipus().toString() + "\n");
             
             UtilityCLI.mostraLlista(opcions, seleccio);
             Integer n = UtilityCLI.demanarNombre("Selecciona una opció: ", 0, opcions.size()-1);
@@ -266,7 +267,13 @@ public class QueEnSe {
             opcions.add("Finalitzar");
             opcions.add("----------------");
         }
-        UtilityCLI.printNomPantalla("Creació de enigma");
+        
+        
+        while(!sortir) {
+            UtilityCLI.printNomPantalla("Selecció de enigma");
+            System.out.print("Acció: " + enunciat + "\n");
+        }
+        
         UtilityCLI.demanarNombre("Acció: ", 0, 4);
     }
     
