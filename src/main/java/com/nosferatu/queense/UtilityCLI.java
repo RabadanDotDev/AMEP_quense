@@ -2,6 +2,8 @@
 package com.nosferatu.queense;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
 
 public class UtilityCLI {
     /**
@@ -12,7 +14,15 @@ public class UtilityCLI {
      * @post S'ha escrit per consola la llista de elements amb els seus índexs
      */
     public static void mostraLlista(ArrayList<String> llistaElements) {
-        // 0 - text
+        Iterator<String> it = llistaElements.iterator();
+        int i = 0;
+        while(it.hasNext()){
+            System.out.print(i);
+            System.out.print(" - ");
+            System.out.print(it.next());
+            System.out.print("\n");
+            ++i;
+        }
     }
     
     /**
@@ -40,7 +50,18 @@ public class UtilityCLI {
      */
     public static Integer demanarNombre(String peticio, Integer min, Integer max) {
         // peticio (entre $min y $max)
-        return 0;
+        System.out.print(peticio + " (entre " + min + " i " + max + " ) ");
+        Scanner input = new Scanner(System.in);
+        int i;
+        while(input.hasNext()){
+        input = new Scanner(System.in);
+        if(input.hasNextInt()){
+        i = input.nextInt();
+            if(i < min || max < i) System.out.print("Introdueix un nombre dins l'interval d'opcions" + " (entre " + min + " i " + max + " ) ");
+        }
+        else System.out.print(peticio + " (entre " + min + " i " + max + " ) ");
+        }
+        return i;
     }
     
     /**
@@ -51,6 +72,17 @@ public class UtilityCLI {
      * @return el valor introduit per l'usuari
      */
     public static String demanarText() {
+        return "xd";
+    }
+    
+    /**
+     * Demanar data a l'usuari per consola
+     * 
+     * @pre Ø
+     * @post el valor de retorn no es buit
+     * @return la data introduida per l'usuari
+     */
+    public static String demanarData() {
         return "xd";
     }
 }
