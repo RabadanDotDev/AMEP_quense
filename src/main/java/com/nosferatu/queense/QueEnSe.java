@@ -1,8 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
- */
-
 package com.nosferatu.queense;
 
 import java.util.ArrayList;
@@ -11,10 +6,6 @@ import java.util.Date;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author raul
- */
 public class QueEnSe {
     static K k;
 

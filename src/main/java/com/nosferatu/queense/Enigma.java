@@ -3,7 +3,6 @@ package com.nosferatu.queense;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.UUID;
 
 public class Enigma {
     String _nomEnigma;
