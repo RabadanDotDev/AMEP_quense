@@ -4,6 +4,18 @@ package com.nosferatu.queense;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;  
+import java.time.format.DateTimeFormatter;
+import java.text.ParseException;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.Scanner;
 
 public class UtilityCLI {
     
@@ -18,11 +30,11 @@ public class UtilityCLI {
         System.out.print(
             " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
             "    _  ____         __  ______        _____   _____  \n" +
-            "   (_)/ __ \\        \\_\\|  ____|      / ____| /_/__ \\ \n" +
-            "   | | |  | |_   _  ___| |__   _ __ | (___   ___  ) |\n" +
-            "  / /| |  | | | | |/ _ \\  __| | '_ \\ \\___ \\ / _ \\/ / \n" +
-            " | (_| |__| | |_| |  __/ |____| | | |____) |  __/_|  \n" +
-            "  \\___\\___\\_\\\\__,_|\\___|______|_| |_|_____/ \\___(_)\n\n" +
+            "   / __ \\        \\_\\|  ____|      / ____| /_/__ \\ \n" +
+            "  | |  | |_   _  ___| |__   _ __ | (___   ___  ) |\n" +
+            "  | |  | | | | |/ _ \\  __| | '_ \\ \\___ \\ / _ \\/ / \n" +
+            "  | |__| | |_| |  __/ |____| | | |____) |  __/_|  \n" +
+            "  _\\___\\_\\\\__,_|\\___|______|_| |_|_____/ \\___(_)\n\n" +
             " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
             " " + nomPantalla + "\n" +
             " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
@@ -69,6 +81,20 @@ public class UtilityCLI {
     public static void mostraLlista(ArrayList<String> llistaElements, ArrayList<Boolean> elementsMarcats) {
         // 0 [x] text
         // 1 [ ] text
+        Iterator<String> itElements = llistaElements.iterator();
+        Iterator<Boolean> itMarcats = elementsMarcats.iterator();
+        int i = 0;
+        Boolean estaMarcat;
+        String element;
+        while(itElements.hasNext()){
+            element = itElements.next();
+            estaMarcat  = itMarcats.next();
+            System.out.print(i + " [");
+            if(estaMarcat) System.out.print("X");
+            else System.out.print(" ");
+            System.out.print("] " + element + "\n");
+            ++i;
+        }
     }
     
     /**
@@ -82,6 +108,7 @@ public class UtilityCLI {
      * @return el valor introduit per l'usuari
      */
     public static Integer demanarNombre(String peticio, Integer min, Integer max) {
+        // peticio (entre $min y $max)        
         Integer n = null;
         Boolean llegit = Boolean.FALSE;
         Scanner s = new Scanner(System.in);
@@ -95,7 +122,7 @@ public class UtilityCLI {
             
             n = Integer.parseInt(txt);
             
-            if(min <= n && n <= max)
+            if(min <= n && n < max)
                 llegit = Boolean.TRUE;
         }
         
@@ -105,17 +132,12 @@ public class UtilityCLI {
     /**
      * Demanar text a l'usuari per consola
      * 
-     * @param peticio Text a mostrar a l'usuari
      * @pre Ø
      * @post el valor de retorn no es buit
      * @return el valor introduit per l'usuari
      */
-    public static String demanarText(String peticio) {
-        System.out.print(peticio + ": ");
-        
-        Scanner s = new Scanner(System.in);
-        String txt = s.nextLine();
-        return txt;
+    public static String demanarText() {
+        return "xd";
     }
     
     /**
@@ -125,7 +147,31 @@ public class UtilityCLI {
      * @post el valor de retorn no es buit
      * @return la data introduida per l'usuari
      */
-    public static String demanarData() {
-        return "xd";
+    public static Date demanaData() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Introdueix la data en format: dd-mm-yyyy");
+        String date;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        Date date2=null;
+        Boolean llegit = false;
+        while(!llegit){
+        try {
+            date = scanner.next();
+            //Parsing the String
+            date2 = dateFormat.parse(date);
+            int result = date2.compareTo(date2);
+            if(date2){
+            
+            }
+            llegit = true;
+            } 
+                catch (ParseException e) {
+            // TODO Auto-generated catch block
+            System.out.println("Data no vàlida, siusplau introdueix-ne una de vàlida.\n");
+            }
+    }
+        System.out.println(date2);
+        return date2;
     }
 }
+
