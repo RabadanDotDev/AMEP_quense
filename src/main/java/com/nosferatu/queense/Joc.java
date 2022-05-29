@@ -28,12 +28,16 @@ public class Joc {
     }
     
     /**
-     * Descripción TODO
+     * Constructor
      * 
-     * @param t TODO
+     * @param t taulell font
      */
     public Joc(Taulell t) {
-        throw new UnsupportedOperationException("Per programar.");
+        _dataRealitzacio = new Date();
+        _taulellFont = t;
+        _autor = null;
+        _idJoc = UUID.randomUUID().toString();
+        _tirades = new HashMap<>();
     }
     
     /**
@@ -63,23 +67,24 @@ public class Joc {
     }
     
     /**
-     * TODO descripció
+     * Finalitza la creació del nou joc
      * 
-     * @pre TODO
-     * @post TODO
+     * @pre hiHaTiradaDiferenciada()
+     * @post !hiHaTiradaDiferenciada() && recompte tabes ultima tirada correcte
      */
     public void fiJoc() {
-        throw new UnsupportedOperationException("Per programar.");
+        tancaUltimaTirada();
+        _tiradaDiferenciada = null;
     }
     
     /**
-     * TODO descripció
+     * Tanca la tirada diferenciada
      * 
      * @pre hiHaTiradaDiferenciada()
-     * @post la tirada diferenciada ha estat comunicada al llull si aquesta ha estat suspesa
+     * @post la tirada diferenciada ha estat comunicada al autor si aquest existeix i si la tirada ha estat suspesa
      */
     private void tancaUltimaTirada() {
-        if(_tiradaDiferenciada.esTiradaSuspesa()) {
+        if(!(_autor == null) && _tiradaDiferenciada.esTiradaSuspesa()) {
             Repte r = _tiradaDiferenciada.recuperarRepte();
             _autor.repteSuspes(r);
         }
@@ -128,14 +133,15 @@ public class Joc {
     }
     
     /**
-     * TODO
+     * Retorna un map de tots els reptes els quals s'han fet tirades en el jo
      * 
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @pre Ø
+     * @return Map amb els reptes de les tirades
      */
     public Map<String, Repte> obtenirReptes() {
-        throw new UnsupportedOperationException("Per programar.");
+        Map<String, Repte> temp = new HashMap<>();
+        _tirades.values().stream().forEach(t -> t.subscriuRepte(temp));
+        return temp;
     }
     
     /**

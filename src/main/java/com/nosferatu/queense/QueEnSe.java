@@ -21,8 +21,8 @@ public class QueEnSe {
         testNouEnigma(k);
         testNouTaulell(k);
         testNouJoc(k, Boolean.TRUE);
-        //testNouJoc(k, Boolean.TRUE);
-        //testNouJoc(k, Boolean.FALSE);
+        testNouJoc(k, Boolean.TRUE);
+        testNouJoc(k, Boolean.FALSE);
     }
     
     public static void testNouEnigma(K k){
@@ -203,6 +203,7 @@ public class QueEnSe {
             System.out.print("Repte + repte al taulell - " + k.hiHaRepteAlTaulell(t, idRepte) + "\n");
             System.out.print("Hi ha tirada pel repte al joc diferenciat - " + k.hiHaTiradaPelRepteAlJocDiferenciat(idRepte) + "\n");
             System.out.print("Tirada diferenciada - " + k.hiHaTiradaDiferenciada() + "\n");
+            System.out.print("Joc complert - " + k.jocDiferenciatEsComplet() + "\n");
             if(k.hiHaTiradaDiferenciada()) {
                 System.out.print("Tirada diferenciada amb tria - " + k.teTiradaDiferenciadaTria() + "\n");
             }
@@ -223,19 +224,23 @@ public class QueEnSe {
 
             for (String s : ids) {
                 System.out.print("Tirada diferenciada - " + k.hiHaTiradaDiferenciada() + "\n");
-                System.out.print("Id proposta" + s + " al repte " + r.obtenirId() + " " + k.hiHaPropostaAlRepte(r, s) + "\n");
-                System.out.print("Id proposta" + s + " a la tirada " + k.hiHaPropostaALaTiradaDiferenciada(s) + "\n");
+                System.out.print("Id proposta " + s + " al repte " + r.obtenirId() + " " + k.hiHaPropostaAlRepte(r, s) + "\n");
+                System.out.print("Id proposta " + s + " a la tirada " + k.hiHaPropostaALaTiradaDiferenciada(s) + "\n");
 
                 k.introduccioTria(s);
-                System.out.print("Id proposta" + s + " a la tirada " + k.hiHaPropostaALaTiradaDiferenciada(s) + "\n");
+                System.out.print("Id proposta " + s + " a la tirada " + k.hiHaPropostaALaTiradaDiferenciada(s) + "\n");
             }
         }
         
+        System.out.print("Joc diferenciat - " + k.hiHaJocDiferenciat() + "\n");
+        System.out.print("Tirada diferenciada - " + k.hiHaTiradaDiferenciada() + "\n");
+        System.out.print("Joc complert - " + k.jocDiferenciatEsComplet() + "\n");
+        
+        k.fiJoc();
+        
+        System.out.print("Joc diferenciat - " + k.hiHaJocDiferenciat() + "\n");
+        
         System.out.print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
         
-    }
-
-    private static void testNouJocAnonim(K k) {
-        return;
     }
 }

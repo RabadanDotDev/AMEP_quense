@@ -54,17 +54,6 @@ public class Tirada {
     }
     
     /**
-     * TODO descripció
-     * 
-     * @param idProposta TODO
-     * @pre TODO
-     * @post TODO
-     */
-    public void fiJoc(String idProposta) {
-        throw new UnsupportedOperationException("Per programar.");
-    }
-    
-    /**
      * Accés a una proposta concreta del repte de la tirada
      * 
      * @param idProposta Proposta a encaixar
@@ -90,16 +79,6 @@ public class Tirada {
     }
     
     /**
-     * TODO descripció
-     * 
-     * @pre TODO
-     * @post TODO
-     */
-    private void tancaUltimaTirada() {
-        throw new UnsupportedOperationException("Per programar.");
-    }
-    
-    /**
      * Comprovador de si hi ha una propoposta identificada per idProposta
      * 
      * @param idProposta El id de la proposta a comprovar
@@ -120,13 +99,13 @@ public class Tirada {
     }
     
     /**
-     * TODO descripció
+     * Afegeix el repte de la tirada a temp
      * 
-     * @pre TODO
-     * @post TODO
-     * @return 
+     * @param temp El map a incloure el repte
+     * @pre Ø
+     * @post El repte de la tirada es troba dins de temp
      */
-    public void subscriuRepte(Map<String, Repte> temp) { // TODO: mirar si realmente esto se pasa por "referencia" o no
-        throw new UnsupportedOperationException("Per programar.");
+    public void subscriuRepte(Map<String, Repte> temp) {
+        temp.put(_repteDeLaTirada._idRepte, _repteDeLaTirada);
     }
 }

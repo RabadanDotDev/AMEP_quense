@@ -211,14 +211,15 @@ public class K {
     }
     
     /**
-     * TODO descripció TODO
+     * Inicia la creació d'un nou joc sense Llull
      * 
-     * @param nomTaulell
-     * @pre TODO
-     * @post TODO
+     * @param nomTaulell El nom del taulell
+     * @pre hiHaTaulellAnomenat(nomTaulell) && elTaulellEsValid && !hiHaJocDiferenciat()
+     * @post hiHaJocDiferenciat() && elJocDiferenciatEsDelTaulell
      */
     public void iniciNouJocAnonim(String nomTaulell) {
-        throw new UnsupportedOperationException("Per programar.");
+        _taulellDiferenciat = _taulells.get(nomTaulell);
+        _taulellDiferenciat.iniciNouJocAnonim();
     }
     
     /**
@@ -244,13 +245,14 @@ public class K {
     }
     
     /**
-     * TODO descripció
+     * Finalitza la creació del nnou joc
      * 
-     * @pre TODO
-     * @post TODO
+     * @pre hiHaJocDiferenciat() && hiHaTiradaDiferenciada() && jocDiferenciatEsComplert()
+     * @post !hiHaTiradaDiferenciada() && !hiHaJocDiferenciat() && recompte tabes ultima tirada correcte
      */
     public void fiJoc() {
-        throw new UnsupportedOperationException("Per programar.");
+        _taulellDiferenciat.fiJoc();
+        _taulellDiferenciat = null;
     }
     
     /**
@@ -340,14 +342,13 @@ public class K {
     }
     
     /**
-     * TODO
+     * Comprovador de si el joc diferenciat es complert
      * 
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @pre hiHaJocDiferenciat()
+     * @return True si el joc diferenciat es complert, false en cas contrari.
      */
     public Boolean jocDiferenciatEsComplet() {
-        throw new UnsupportedOperationException("Per programar.");
+        return _taulellDiferenciat.jocDiferenciatEsComplet();                
     }
     
     /**
