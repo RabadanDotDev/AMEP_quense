@@ -451,7 +451,7 @@ public class K {
     }
     
     /**
-     * Recuperador de l'iterador dels reptes del repte r
+     * Recuperador de l'iterador de les propostes del repte r
      * 
      * @param r El repte contenidor de les propostes
      * @return Iterador de les propostes de r

@@ -93,7 +93,7 @@ public class Enigma {
      * Recuperador del nom de l'enigma
      * 
      * @pre Ø
-     * @return El nom
+     * @return El nom de l'enigma
      */
     public String obtenirNom() {
         return _nomEnigma;
