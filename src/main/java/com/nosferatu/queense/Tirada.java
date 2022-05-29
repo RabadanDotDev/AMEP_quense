@@ -24,7 +24,7 @@ public class Tirada {
      * Accés a saber si la tirada ha estat suspesa
      * 
      * @pre Ø
-     * @return True si es tirada suspesa, false en cas contrari
+     * @return True si és tirada suspesa, false en cas contrari
      */
     public Boolean esTiradaSuspesa() {
         return _tabesPositives < _tabesNegatives;

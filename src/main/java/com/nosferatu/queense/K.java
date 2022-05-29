@@ -91,7 +91,7 @@ public class K {
      * 
      * @param nomTaulell Nom del taulell
      * @param dataExpiracio Data d'exipració del taulell
-     * @pre !hiHaTaulellDiferenciat() && !hiHaTaulellAnomenat(nomTaulell) && dataActual() < dataExpiració
+     * @pre !hiHaTaulellDiferenciat() && !hiHaTaulellAnomenat(nomTaulell) && dataActual() <= dataExpiració
      * @post hiHaTaulellDiferenciat() && hiHaTaulellAnomenat(nomTaulell)
      */
     public void iniciNouTaulell(String nomTaulell, Date dataExpiracio) {
@@ -115,7 +115,7 @@ public class K {
      * Afegeix la proposta identificada per idProposta al repte diferenciat
      * 
      * @param idProposta La proposta a afegir
-     * @pre hiHaRepteDiferenciat() && hiHaLaPropostaIdPropostaAlEnigmaFontDelRepteDiferenciat && !hiHaPropostaDinsDeRepteDiferenciat(idProposta)
+     * @pre hiHaTaulellDiferenciat() && hiHaRepteDiferenciat() && hiHaLaPropostaIdPropostaAlEnigmaFontDelRepteDiferenciat && !hiHaPropostaDinsDeRepteDiferenciat(idProposta)
      * @post hiHaPropostaDinsDeRepteDiferenciat(idProposta)
      */
     public void seleccionarProposta(String idProposta) {
@@ -134,29 +134,28 @@ public class K {
     }
     
     /**
-     * TODO
+     * Comprovar si hi ha un taulell diferenciat
      * 
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @pre Ø
+     * @return True si hi ha un taulell diferenciat, false en cas contrari
      */
     public Boolean hiHaTaulellDiferenciat() {
         return !(_taulellDiferenciat == null);
     }
     
     /**
-     * TODO
+     * Comprovar si hi ha un taulell amb nom nomTaulell
      * 
-     * @param nomTaulell
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @param nomTaulell El nom del taulell a comprovar
+     * @pre Ø
+     * @return True si hi ha un taulell amb nom nomTaulell, false en cas contrari
      */
     public Boolean hiHaTaulellAnomenat(String nomTaulell) {
         return _taulells.containsKey(nomTaulell);
     }
     
     /**
+     * Comprovar si hi ha un repte diferenciat
      * 
      * @return true si hi ha un repte diferenciat, false en cas contrari
      */
@@ -255,7 +254,7 @@ public class K {
     }
     
     /**
-     * Comprobador de si existeix un joc diferenciat
+     * Comprovador de si existeix un joc diferenciat
      * 
      * @pre Ø
      * @return True si hi ha un joc diferenciat, false en cas contrari
@@ -293,7 +292,7 @@ public class K {
     }
     
     /**
-     * Comprobador de si hi ha tirada diferenciada
+     * Comprovador de si hi ha tirada diferenciada
      * 
      * @pre Ø
      * @return True si hi ha una tirada diferenciada, false en cas contrari

@@ -86,7 +86,7 @@ public class Joc {
     }
     
     /**
-     * Comprobador de si hi ha tirada pel repte identificat per idRepte
+     * Comprovador de si hi ha tirada pel repte identificat per idRepte
      * 
      * @param idRepte El id del repte a comprovar
      * @pre Ø
@@ -108,7 +108,7 @@ public class Joc {
     }
     
     /**
-     * Comprobador de si hi ha tirada diferenciada
+     * Comprovador de si hi ha tirada diferenciada
      * 
      * @pre Ø
      * @return True si hi ha una tirada diferenciada, false en cas contrari

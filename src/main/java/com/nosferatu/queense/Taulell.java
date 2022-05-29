@@ -83,7 +83,7 @@ public class Taulell {
      * 
      * @param e Enigma font
      * @pre Ø
-     * @post Hi ha un nou repte i aquest es el diferenciat
+     * @post Hi ha un nou repte i aquest és el diferenciat
      */
     private void crearRepte(Enigma e) {
         _repteDiferenciat = new Repte(e, this);
@@ -91,7 +91,7 @@ public class Taulell {
     }
     
     /**
-     * Actualitza el nombre de reptes de l'enigma y el taulell
+     * Actualitza el nombre de reptes de l'enigma i el taulell
      * 
      * @param e Enigma a actualitzar
      * @pre Ø
@@ -187,7 +187,7 @@ public class Taulell {
     }
     
     /**
-     * Comprobador de si existeix un joc diferenciat
+     * Comprovador de si existeix un joc diferenciat
      * 
      * @pre Ø
      * @return True si hi ha un joc diferenciat, false en cas contrari
@@ -197,9 +197,9 @@ public class Taulell {
     }
     
     /**
-     * Comprobador de si hi ha el repte identificat per idRepte
+     * Comprovador de si hi ha el repte identificat per idRepte
      * 
-     * @param idRepte El id del repte a comprobar
+     * @param idRepte El id del repte a comprovar
      * @pre Ø
      * @return True si hi ha un repte identificat per idRepte
      */
@@ -208,7 +208,7 @@ public class Taulell {
     }
     
     /**
-     * Comprobador de si hi ha tirada pel repte identificat per idRepte al joc diferenciat
+     * Comprovador de si hi ha tirada pel repte identificat per idRepte al joc diferenciat
      * 
      * @param idRepte El id del repte a comprovar
      * @pre Ø
@@ -219,7 +219,7 @@ public class Taulell {
     }
     
     /**
-     * Comprobador de si hi ha tirada diferenciada
+     * Comprovador de si hi ha tirada diferenciada
      * 
      * @pre Ø
      * @return True si hi ha una tirada diferenciada, false en cas contrari
@@ -269,7 +269,7 @@ public class Taulell {
      * Obtenció de la validesa del taulell
      * 
      * @pre Ø
-     * @return True si es valid, false en cas contrari
+     * @return True si és valid, false en cas contrari
      */
     public Boolean esValid() {
         return (_dataExpiracio.after(new Date()));

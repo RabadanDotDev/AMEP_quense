@@ -23,7 +23,7 @@ public class Proposta {
      * Accés a la correctesa de la proposta
      * 
      * @pre Ø
-     * @return True si la proposta es correcta, false en cas contrari
+     * @return True si la proposta és correcta, false en cas contrari
      */
     public Boolean esCorrecta() {
         return _esCorrecta;
@@ -51,7 +51,7 @@ public class Proposta {
     
     /**
      * 
-     * @return Retorna 1 si es incorrecta
+     * @return Retorna 1 si és incorrecta
      */
     public int retorna1SiIncorrecta() {
         int r = 0;
@@ -64,7 +64,7 @@ public class Proposta {
     
     /**
      * 
-     * @return Retorna 1 si es correcta
+     * @return Retorna 1 si és correcta
      */
     public int retorna1SiCorrecta() {
         int r = 0;

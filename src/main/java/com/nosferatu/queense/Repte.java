@@ -15,7 +15,7 @@ public class Repte {
     Map<String, Proposta> _propostes;
     
     /**
-     * Descripción TODO
+     * Constructor repte
      * 
      * @param e Enigma font
      * @param t Taulell contenedor
@@ -32,8 +32,8 @@ public class Repte {
     /**
      * Actualitzar el repte per tal que el tipus sigui correcte
      * 
-     * @pre 1 < numLlavors() && 1 < _numObstacles()
-     * @post El tipus del repte es correcte
+     * @pre 1 <= numLlavors() && 1 <= _numObstacles()
+     * @post El tipus del repte és correcte
      */
     public void posarRepteTipusCorrecte() {
         if(_numLlavors == 1 && _numObstacles == 1)
@@ -63,7 +63,7 @@ public class Repte {
     }
     
     /**
-     * Consultor nombre de llavors
+     * Consultar nombre de llavors
      * 
      * @pre Ø
      * @return Retorna el nombre de propostes correctes contingudes
@@ -73,7 +73,7 @@ public class Repte {
     }
     
     /**
-     * Consultor nombre de llavors
+     * Consultar nombre de llavors
      * 
      * @pre Ø
      * @return Retorna el nombre de propostes incorrectes contingudes
