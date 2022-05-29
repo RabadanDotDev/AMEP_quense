@@ -47,7 +47,7 @@ public class QueEnSe {
             
             switch(UtilityCLI.demanarNombre("Acció: ", 0, 4)) {
                 case 0:
-                    jugarTaulell();
+                    seleccioTaulell();
                     break;
                 case 1:
                     crearEnigma();
@@ -65,20 +65,78 @@ public class QueEnSe {
         } 
     }
     
-    public static void jugarTaulell(){
-        UtilityCLI.printNomPantalla("Selecció de taulell");
+    public static void seleccioTaulell(){
+        Boolean sortir = Boolean.FALSE;
+        String nomLlull = "";
+        String nomTaulell = "";
+        while(!sortir) {
+            UtilityCLI.printNomPantalla("Selecció de taulell");
+            System.out.print("Nom llull: " + nomLlull + "\n");
+            System.out.print("Nom taulell seleccionat: " + nomTaulell + "\n");
         
-        ArrayList<String> taulells = new ArrayList<>();
-        {
-            Iterator<Taulell> it = k.recuperarIteradorTaulells();
-            while(it.hasNext()) {
-                Taulell t = it.next();
-                taulells.add(t.obtenirNom());
+            ArrayList<String> opcions = new ArrayList<>();
+            {
+                opcions.add("Introduir nom Llull");
+                opcions.add("Jugar");
+                opcions.add("Jugar joc anònim");
+                opcions.add("Enrere");
+                opcions.add("----------------");
+            
+                Iterator<Taulell> it = k.recuperarIteradorTaulells();
+                while(it.hasNext()) {
+                    Taulell t = it.next();
+                    opcions.add(t.obtenirNom());
+                }
             }
+
+            UtilityCLI.mostraLlista(opcions);
+            Integer n = UtilityCLI.demanarNombre("Selecciona una opció: ", 0, opcions.size()-1);
+            switch(n) {
+                case 0:
+                    nomLlull = UtilityCLI.demanarText("Introdueix el nom del llull");
+                    break;
+                case 1:
+                    if(nomTaulell == "") {
+                        System.out.print("Cal seleccionar un taulell.\n");
+                        UtilityCLI.demanarText("Pressiona intro per continuar...");
+                        break;
+                    }
+                    if(nomLlull == "") {
+                        System.out.print("Cal introduir un nom de Llull.\n");
+                        UtilityCLI.demanarText("Pressiona intro per continuar...");
+                        break;
+                    }
+                    
+                    k.iniciNouJocLlull(nomLlull, nomTaulell);
+                    jugarJoc();
+                    
+                    break;
+                case 2:
+                    if(nomTaulell == "") {
+                        System.out.print("Cal seleccionar un taulell.\n");
+                        UtilityCLI.demanarText("Pressiona intro per continuar...");
+                        break;
+                    }
+                    
+                    k.iniciNouJocAnonim(nomTaulell);
+                    jugarJoc();
+                    
+                    break;
+                case 3:
+                    sortir = Boolean.TRUE;
+                    break;
+                case 4:
+                    break;
+                default:
+                    nomTaulell = opcions.get(n);
+                    break;
+            }
+            
         }
+    }
+    
+    public static void jugarJoc() {
         
-        UtilityCLI.mostraLlista(taulells);
-        UtilityCLI.demanarNombre("Taulell a jugar: ", 0, 4);
     }
     
     public static void crearEnigma(){

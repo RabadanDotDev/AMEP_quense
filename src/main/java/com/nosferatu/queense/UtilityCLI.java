@@ -82,7 +82,6 @@ public class UtilityCLI {
      * @return el valor introduit per l'usuari
      */
     public static Integer demanarNombre(String peticio, Integer min, Integer max) {
-        // peticio (entre $min y $max)        
         Integer n = null;
         Boolean llegit = Boolean.FALSE;
         Scanner s = new Scanner(System.in);
@@ -96,7 +95,7 @@ public class UtilityCLI {
             
             n = Integer.parseInt(txt);
             
-            if(min <= n && n < max)
+            if(min <= n && n <= max)
                 llegit = Boolean.TRUE;
         }
         
@@ -106,12 +105,17 @@ public class UtilityCLI {
     /**
      * Demanar text a l'usuari per consola
      * 
+     * @param peticio Text a mostrar a l'usuari
      * @pre Ø
      * @post el valor de retorn no es buit
      * @return el valor introduit per l'usuari
      */
-    public static String demanarText() {
-        return "xd";
+    public static String demanarText(String peticio) {
+        System.out.print(peticio + ": ");
+        
+        Scanner s = new Scanner(System.in);
+        String txt = s.nextLine();
+        return txt;
     }
     
     /**
