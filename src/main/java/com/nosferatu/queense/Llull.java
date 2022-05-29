@@ -42,12 +42,12 @@ public class Llull {
     }
     
     /**
-     * TODO descripció
+     * Esborrar tots els reptes suspesos del llull
      * 
-     * @pre TODO
-     * @post TODO
+     * @pre Ø
+     * @post El llull no té cap suspens recent
      */
     public void esborrarSuspesos() {
-        throw new UnsupportedOperationException("Per programar.");
+        _reptesSuspesos = new HashMap<>();
     }
 }

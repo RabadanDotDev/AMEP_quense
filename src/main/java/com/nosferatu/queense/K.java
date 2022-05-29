@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class K {
-    Date _dataDarreraEliminació;
+    Date _dataDarreraEliminacio;
     Map<String, Enigma> _enigmes;
     Map<String, Taulell> _taulells;
     Enigma _enigmaDiferenciat;
@@ -18,7 +18,7 @@ public class K {
      * 
      */
     public K(){
-        _dataDarreraEliminació = new Date(0);
+        _dataDarreraEliminacio = new Date(0);
         _enigmes = new HashMap<>();
         _taulells = new HashMap<>();
         _magatzemLlulls = new MagatzemLlulls();
@@ -352,24 +352,24 @@ public class K {
     }
     
     /**
-     * TODO descripció
+     * Esborrar tots els reptes suspesos de tots els Llulls
      * 
-     * @pre TODO
-     * @post TODO
+     * @pre La data actual no es igual a la de la darrera eliminació
+     * @post No hi ha cap Llull amb suspens recent && la data de la darrera eliminació es avui
      */
     public void esborrarSuspesos() {
-        throw new UnsupportedOperationException("Per programar.");
+        _magatzemLlulls.esborrarSuspesos();
+        _dataDarreraEliminacio = new Date();
     }
     
     /**
-     * TODO
+     * Consultor de la data de la darrera eliminació
      * 
-     * @pre TODO
-     * @post TODO
-     * @return TODO
+     * @pre Ø
+     * @return Data de la darrera eliminació
      */
-    public Date obtenirDataDarreraEliminació() {
-        throw new UnsupportedOperationException("Per programar.");
+    public Date obtenirDataDarreraEliminacio() {
+        return _dataDarreraEliminacio;
     }
     
     /**

@@ -31,12 +31,12 @@ public class MagatzemLlulls {
     }
     
     /**
-     * TODO descripció
+     * Esborrar tots els reptes suspesos de tots els Llulls
      * 
-     * @pre TODO
-     * @post TODO
+     * @pre Ø
+     * @post No hi ha cap Llull amb suspens recent
      */
     public void esborrarSuspesos() {
-        throw new UnsupportedOperationException("Per programar.");
+        _llulls.values().stream().forEach(l -> l.esborrarSuspesos());
     }
 }
