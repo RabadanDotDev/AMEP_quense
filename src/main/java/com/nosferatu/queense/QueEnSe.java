@@ -8,6 +8,7 @@ package com.nosferatu.queense;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Iterator;
 
 /**
  *
@@ -18,35 +19,21 @@ public class QueEnSe {
 
     public static void main(String[] args) {
         k = new K();
-        inici();
-        /*
+        
         TestsFuncionsK.testNouEnigma(k);
         TestsFuncionsK.testNouTaulell(k);
         TestsFuncionsK.testNouJoc(k, Boolean.TRUE);
         TestsFuncionsK.testNouJoc(k, Boolean.TRUE);
         TestsFuncionsK.testNouJoc(k, Boolean.FALSE);
-        TestsFuncionsK.testEsborrarSuspesos(k);*/
+        
+        inici();
     }
     
-    public static void printNomPantalla(String nomPantalla){
-        System.out.print(
-            " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
-            "    _  ____         __  ______        _____   _____  \n" +
-            "   (_)/ __ \\        \\_\\|  ____|      / ____| /_/__ \\ \n" +
-            "   | | |  | |_   _  ___| |__   _ __ | (___   ___  ) |\n" +
-            "  / /| |  | | | | |/ _ \\  __| | '_ \\ \\___ \\ / _ \\/ / \n" +
-            " | (_| |__| | |_| |  __/ |____| | | |____) |  __/_|  \n" +
-            "  \\___\\___\\_\\\\__,_|\\___|______|_| |_|_____/ \\___(_)\n\n" +
-            " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
-            " " + nomPantalla + "\n" +
-            " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
-        );
-    }
-    
+
     public static void inici(){
         Boolean sortir = Boolean.FALSE;
         while(!sortir) {
-            printNomPantalla("Pantalla inicial");
+            UtilityCLI.printNomPantalla("Pantalla inicial");
 
             ArrayList<String> opcionsMenu = new ArrayList<>(Arrays.asList(
                     "Jugar taulell",
@@ -79,15 +66,29 @@ public class QueEnSe {
     }
     
     public static void jugarTaulell(){
-        printNomPantalla("Selecció de taulell");
+        UtilityCLI.printNomPantalla("Selecció de taulell");
+        
+        ArrayList<String> taulells = new ArrayList<>();
+        {
+            Iterator<Taulell> it = k.recuperarIteradorTaulells();
+            while(it.hasNext()) {
+                Taulell t = it.next();
+                taulells.add(t.obtenirNom());
+            }
+        }
+        
+        UtilityCLI.mostraLlista(taulells);
+        UtilityCLI.demanarNombre("Taulell a jugar: ", 0, 4);
     }
     
     public static void crearEnigma(){
         printNomPantalla("Creació de enigma");
+        UtilityCLI.demanarNombre("Acció: ", 0, 4);
     }
     
     public static void crearTaulell(){
         printNomPantalla("Creació de taulel");
+        UtilityCLI.demanarNombre("Acció: ", 0, 4);
     }
     
     public static void eliminarSuspesos(){
