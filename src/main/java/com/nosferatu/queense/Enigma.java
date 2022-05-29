@@ -27,8 +27,8 @@ public class Enigma {
     /**
      * Introductor de propostes
      * 
-     * @param textProposta TODO
-     * @param esCorrecta TODO
+     * @param textProposta El text de la proposta
+     * @param esCorrecta Correctesa de la proposta
      * @pre Ø
      * @post S'ha creat una proposta amb textProposta i correctesa esCorrecta dins de l'enigma
      */

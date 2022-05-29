@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +19,10 @@ public class QueEnSe {
     static K k;
 
     public static void main(String[] args) {
+        if(null == System.console()) {
+            JOptionPane.showMessageDialog(null, "GUI no disponible. Si us plau, executeu el programa des d'una consola de comandes amb \"java -jar $nomDelArxiu\"");
+        }
+        
         k = new K();
         
         TestsFuncionsK.testNouEnigma(k);
