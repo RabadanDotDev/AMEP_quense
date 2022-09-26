@@ -1,6 +1,6 @@
 # AMEP_quense
-🌏 [**Català**](https://github.com/RabadanDotDev/AMEP_quense/blob/main/README.md),
-[**English**](https://github.com/RabadanDotDev/AMEP_quense/blob/main/README.en.md)
+🌏 [**Català**](https://github.com/RabadanDotDev/AMEP_quense/blob/master/README.md),
+[**English**](https://github.com/RabadanDotDev/AMEP_quense/blob/master/README.en.md)
 
 ## Description
 
