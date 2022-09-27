@@ -4,7 +4,7 @@
 
 ## Description
 
-Prototype of a program for creating and completing questionnaires written in Java and developed as a project of the Further Software Engineering subject (AMEP) of the Universitat Politècnica de Catalunya Barcelona Tech (UPC). This prototype has been developed using analysis for developing its specification and software engineering principles to make its design. Documentation in the form of JavaDoc comments has also been included.
+Prototype of a program for creating and completing quizzes written in Java and developed as a project of the Further Software Engineering subject (AMEP) of the Universitat Politècnica de Catalunya Barcelona Tech (UPC). This prototype has been developed using analysis for developing its specification and software engineering principles to make its design. Documentation in the form of JavaDoc comments has also been included.
 
 ## Compilation and execution
 Dependencies:
